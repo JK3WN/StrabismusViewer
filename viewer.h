@@ -4,9 +4,9 @@
 #include <QWidget>
 #include <QDir>
 #include <QMessageBox>
-#include <QtMultimedia/QMediaPlayer>
-#include <QtMultimedia/QMediaPlaylist>
-#include <QtMultimediaWidgets/QVideoWidget>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QVideoWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -19,6 +19,8 @@ class Viewer : public QWidget
 public:
     Viewer(QWidget *parent = nullptr);
     ~Viewer();
+
+
 
 private:
     Ui::Viewer *ui;

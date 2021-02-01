@@ -17,9 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
+    videowidget.cpp \
     viewer.cpp
 
 HEADERS += \
+    videowidget.h \
     viewer.h
 
 FORMS += \

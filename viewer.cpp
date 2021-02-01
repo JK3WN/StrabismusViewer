@@ -1,5 +1,6 @@
 #include "viewer.h"
 #include "ui_viewer.h"
+#include "videowidget.h"
 
 Viewer::Viewer(QWidget *parent)
     : QWidget(parent)
@@ -12,11 +13,9 @@ Viewer::Viewer(QWidget *parent)
     foreach(QFileInfo var,dir.entryInfoList()){
         ui->listWidget->addItem(var.fileName());
     }
-
 }
 
 Viewer::~Viewer()
 {
     delete ui;
 }
-
