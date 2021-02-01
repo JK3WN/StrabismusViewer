@@ -6,6 +6,13 @@ Viewer::Viewer(QWidget *parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
+
+    QDir dir("C:/Users/user/Desktop");
+    dir.setNameFilters(QStringList()<<"*.mp4");
+    foreach(QFileInfo var,dir.entryInfoList()){
+        ui->listWidget->addItem(var.fileName());
+    }
+
 }
 
 Viewer::~Viewer()

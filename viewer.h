@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDir>
+#include <QMessageBox>
 #include <QtMultimedia/QMediaPlayer>
 #include <QtMultimedia/QMediaPlaylist>
 #include <QtMultimediaWidgets/QVideoWidget>
