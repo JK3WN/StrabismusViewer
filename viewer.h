@@ -20,8 +20,6 @@ public:
     Viewer(QWidget *parent = nullptr);
     ~Viewer();
 
-
-
 private:
     Ui::Viewer *ui;
 };
