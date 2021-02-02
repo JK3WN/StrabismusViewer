@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Viewer</string>
+   <string>Strabismus Viewer</string>
   </property>
   <widget class="QVideoWidget" name="vidPlayer" native="true">
    <property name="geometry">

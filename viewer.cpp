@@ -12,7 +12,6 @@ Viewer::Viewer(QWidget *parent)
     dir.setNameFilters(QStringList()<<"*.mp4");
     foreach(QFileInfo var,dir.entryInfoList()){
         ui->listWidget->addItem(var.fileName());
-        connect(ui->listWidget, SIGNAL(on_listWidget_itemDoubleClicked()),this,SLOT(on_listWidget_itemDoubleClicked()));
     }
 }
 
