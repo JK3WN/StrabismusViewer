@@ -19,6 +19,7 @@ class Viewer : public QWidget
 
 public:
     Viewer(QWidget *parent = nullptr);
+    QUrl url;
     ~Viewer();
 
 private slots:
@@ -30,5 +31,8 @@ private slots:
 private:
     Ui::Viewer *ui;
     QMediaPlayer *mPlayer;
+    QMediaPlaylist *mList;
+    QDir *dir;
+    QString StrToString(char *str);
 };
 #endif // VIEWER_H
