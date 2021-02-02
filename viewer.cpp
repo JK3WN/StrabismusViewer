@@ -1,19 +1,19 @@
 #include "viewer.h"
 #include "ui_viewer.h"
-#include "videowidget.h"
 
 Viewer::Viewer(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
+    mPlayer=new QMediaPlayer(this,QMediaPlayer::VideoSurface);
 
     ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->nFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
     ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
     ui->navigationBar->setRange(0,0);
 
-    connect(ui->playButton,SIGNAL(on_playButton_clicked()),this,SLOT(on_playButton_clicked()));
+    mPlayer->setVideoOutput(ui->vidPlayer);
 
     QDir dir("C:/Users/user/Desktop");
     dir.setNameFilters(QStringList()<<"*.mp4");
@@ -28,5 +28,20 @@ Viewer::~Viewer()
 }
 void Viewer::on_playButton_clicked()
 {
-    printf("aa");
+    printf("a");
+}
+
+void Viewer::on_nFrameButton_clicked()
+{
+    printf("b");
+}
+
+void Viewer::on_pFrameButton_clicked()
+{
+    printf("c");
+}
+
+void Viewer::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+
 }

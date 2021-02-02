@@ -7,6 +7,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QVideoWidget>
+#include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -22,8 +23,12 @@ public:
 
 private slots:
     void on_playButton_clicked();
+    void on_nFrameButton_clicked();
+    void on_pFrameButton_clicked();
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::Viewer *ui;
+    QMediaPlayer *mPlayer;
 };
 #endif // VIEWER_H
