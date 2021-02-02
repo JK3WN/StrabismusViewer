@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     Viewer w;
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("eucKR"));
     QCoreApplication::setApplicationName("Strabismus Viewer");
-    w.setFixedSize(550,330);
+    w.setFixedSize(1280,720);
     w.show();
     return a.exec();
 }

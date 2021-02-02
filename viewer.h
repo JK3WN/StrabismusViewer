@@ -26,7 +26,7 @@ private slots:
     void on_playButton_clicked();
     void on_nFrameButton_clicked();
     void on_pFrameButton_clicked();
-    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+    void jump(const QModelIndex &index);
 
 private:
     Ui::Viewer *ui;

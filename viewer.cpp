@@ -16,6 +16,7 @@ Viewer::Viewer(QWidget *parent)
     ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
     ui->navigationBar->setRange(0,0);
 
+    connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
 
     dir=new QDir("C:/Users/user/Desktop/");
@@ -28,12 +29,6 @@ Viewer::Viewer(QWidget *parent)
     }
     mList->addMedia(content);
     ui->listWidget->setCurrentRow(mList->currentIndex()!=-1 ? mList->currentIndex() : 0);
-    /*
-    dir->setNameFilters(QStringList()<<"*.mp4");
-    foreach(QFileInfo var,dir->entryInfoList()){
-        ui->listWidget->addItem(var.fileName());
-    }
-    */
 }
 
 Viewer::~Viewer()
@@ -65,7 +60,11 @@ void Viewer::on_pFrameButton_clicked()
     printf("c");
 }
 
-void Viewer::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+void Viewer::jump(const QModelIndex &index)
 {
-    printf("qwer");
+    if(index.isValid()){
+        mList->setCurrentIndex(index.row());
+        mPlayer->play();
+        ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+    }
 }
