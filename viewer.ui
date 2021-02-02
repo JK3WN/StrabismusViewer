@@ -59,7 +59,7 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QToolButton" name="startButton">
+  <widget class="QToolButton" name="playButton">
    <property name="geometry">
     <rect>
      <x>340</x>

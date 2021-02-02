@@ -22,7 +22,9 @@ public:
 
 private slots:
     void on_playButton_clicked();
-
+    void on_nFrameButton_clicked();
+    void on_pFrameButton_clicked();
+    
 private:
     Ui::Viewer *ui;
 };

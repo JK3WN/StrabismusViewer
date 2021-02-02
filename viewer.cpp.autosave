@@ -14,6 +14,8 @@ Viewer::Viewer(QWidget *parent)
     ui->navigationBar->setRange(0,0);
 
     connect(ui->playButton,SIGNAL(on_playButton_clicked()),this,SLOT(on_playButton_clicked()));
+    connect(ui->nFrameButton,SIGNAL(on_nFrameButton_clicked()),this,SLOT(on_nFrameButton_clicked()));
+    connect(ui->pFrameButton,SIGNAL(on_pFrameButton_clicked()),this,SLOT(on_pFrameButton_clicked()));
 
     QDir dir("C:/Users/user/Desktop");
     dir.setNameFilters(QStringList()<<"*.mp4");
@@ -28,5 +30,15 @@ Viewer::~Viewer()
 }
 void Viewer::on_playButton_clicked()
 {
-    printf("aa");
+    
+}
+
+void Viewer::on_nFrameButton_clicked()
+{
+    
+}
+
+void Viewer::on_pFrameButton_clicked()
+{
+    
 }

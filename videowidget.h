@@ -4,6 +4,4 @@
 #include <QMediaPlayer>
 #include <QWidget>
 
-
-
 #endif // VIDEOWIDGET_H
