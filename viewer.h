@@ -10,6 +10,7 @@
 #include <QVideoWidget>
 #include <QListWidgetItem>
 #include <QFileDialog>
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -37,5 +38,7 @@ private:
     QDir *dir;
     QStringList vids;
     QList<QMediaContent> content;
+    QFile *def;
+    QTextStream *defloc;
 };
 #endif // VIEWER_H
