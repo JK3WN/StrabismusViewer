@@ -9,6 +9,7 @@
 #include <QMediaPlaylist>
 #include <QVideoWidget>
 #include <QListWidgetItem>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -20,7 +21,6 @@ class Viewer : public QMainWindow
 
 public:
     Viewer(QWidget *parent = nullptr);
-    QUrl url;
     ~Viewer();
 
 private slots:
@@ -28,11 +28,14 @@ private slots:
     void on_nFrameButton_clicked();
     void on_pFrameButton_clicked();
     void jump(const QModelIndex &index);
+    void chkFolder();
 
 private:
     Ui::Viewer *ui;
     QMediaPlayer *mPlayer;
     QMediaPlaylist *mList;
     QDir *dir;
+    QStringList vids;
+    QList<QMediaContent> content;
 };
 #endif // VIEWER_H

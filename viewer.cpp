@@ -18,17 +18,7 @@ Viewer::Viewer(QWidget *parent)
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
-
-    dir=new QDir("C:/Users/user/Desktop/");
-    QStringList vids=dir->entryList(QStringList()<<"*.mp4",QDir::Files);
-    QList<QMediaContent> content;
-    for(const QString& v:vids){
-        content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
-        QFileInfo fi(v);
-        ui->listWidget->addItem(fi.fileName());
-    }
-    mList->addMedia(content);
-    ui->listWidget->setCurrentRow(mList->currentIndex()!=-1 ? mList->currentIndex() : 0);
+    connect(ui->actionSelect_Folder,SIGNAL(triggered()),this,SLOT(chkFolder()));
 }
 
 Viewer::~Viewer()
@@ -68,4 +58,20 @@ void Viewer::jump(const QModelIndex &index)
         mPlayer->play();
         ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     }
+}
+
+void Viewer::chkFolder()
+{
+    mPlayer->stop();
+    mList->clear();
+    ui->listWidget->clear();
+    dir=new QDir(QFileDialog::getExistingDirectory(this,"Select Folder",QDir::currentPath(),QFileDialog::ShowDirsOnly));
+    vids=dir->entryList(QStringList()<<"*.mp4",QDir::Files);
+    for(const QString& v:vids){
+        content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
+        QFileInfo fi(v);
+        ui->listWidget->addItem(fi.fileName());
+    }
+    mList->addMedia(content);
+    ui->listWidget->setCurrentRow(mList->currentIndex()!=-1 ? mList->currentIndex() : 0);
 }
