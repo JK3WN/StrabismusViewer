@@ -2,7 +2,7 @@
 #include "ui_viewer.h"
 
 Viewer::Viewer(QWidget *parent)
-    : QWidget(parent)
+    : QMainWindow(parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
@@ -36,6 +36,7 @@ Viewer::~Viewer()
     delete ui;
 }
 
+
 void Viewer::on_playButton_clicked()
 {
     switch (mPlayer->state()) {
@@ -52,12 +53,12 @@ void Viewer::on_playButton_clicked()
 
 void Viewer::on_nFrameButton_clicked()
 {
-    printf("b");
+    printf("n");
 }
 
 void Viewer::on_pFrameButton_clicked()
 {
-    printf("c");
+    printf("p");
 }
 
 void Viewer::jump(const QModelIndex &index)

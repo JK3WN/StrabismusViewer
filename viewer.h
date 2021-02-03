@@ -1,6 +1,7 @@
 #ifndef VIEWER_H
 #define VIEWER_H
 
+#include <QMainWindow>
 #include <QWidget>
 #include <QDir>
 #include <QMessageBox>
@@ -13,7 +14,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
 QT_END_NAMESPACE
 
-class Viewer : public QWidget
+class Viewer : public QMainWindow
 {
     Q_OBJECT
 
@@ -33,6 +34,5 @@ private:
     QMediaPlayer *mPlayer;
     QMediaPlaylist *mList;
     QDir *dir;
-    QString StrToString(char *str);
 };
 #endif // VIEWER_H
