@@ -11,6 +11,8 @@
 #include <QListWidgetItem>
 #include <QFileDialog>
 #include <QFile>
+#include <QLabel>
+#include <QVideoProbe>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -31,6 +33,10 @@ private slots:
     void jump(const QModelIndex &index);
     void chkFolder();
 
+    void on_toolButton_clicked();
+
+    void on_frameBox_returnPressed();
+
 private:
     Ui::Viewer *ui;
     QMediaPlayer *mPlayer;
@@ -40,5 +46,8 @@ private:
     QList<QMediaContent> content;
     QFile *def;
     QTextStream *defloc;
+    QLabel *label;
+    QString *counter;
+    QIntValidator *range;
 };
 #endif // VIEWER_H
