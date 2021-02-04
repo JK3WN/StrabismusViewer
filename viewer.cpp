@@ -16,6 +16,7 @@ Viewer::Viewer(QWidget *parent)
     ui->nFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
     ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
     ui->navigationBar->setRange(0,0);
+    ui->statusbar->showMessage("Video Count :");
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
