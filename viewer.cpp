@@ -16,7 +16,8 @@ Viewer::Viewer(QWidget *parent)
     mPlayer->setPlaylist(mList);
     mPlayer->setVideoOutput(ui->vidPlayer);
     ui->playButton->setEnabled(0);
-    range=new QIntValidator(0,1);
+    ui->frameBox->setReadOnly(1);
+    range=new QIntValidator(0,0);
     ui->frameBox->setValidator(range);
 
     ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
@@ -29,6 +30,8 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
     connect(ui->actionSelect_Folder,SIGNAL(triggered()),this,SLOT(chkFolder()));
+    //connect(mPlayer,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(durChanged(QMediaPlayer::MediaStatus)));
+    connect(mPlayer,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(durChanged(QMediaPlayer::MediaStatus)));
 }
 
 Viewer::~Viewer()
@@ -68,6 +71,8 @@ void Viewer::jump(const QModelIndex &index)
         mPlayer->play();
         ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
         ui->frameBox->setValidator(range);
+        ui->playButton->setEnabled(1);
+        ui->frameBox->setReadOnly(0);
     }
 }
 
@@ -77,7 +82,7 @@ void Viewer::chkFolder()
     mList->clear();
     content.clear();
     ui->listWidget->clear();
-    dir=new QDir(QFileDialog::getExistingDirectory(this,"Select Folder",QDir::currentPath(),QFileDialog::ShowDirsOnly));
+    dir=new QDir(QFileDialog::getExistingDirectory(this,"Select Folder"));
     vids=dir->entryList(QStringList()<<"*.mp4",QDir::Files);
     for(const QString& v:vids){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
@@ -88,8 +93,8 @@ void Viewer::chkFolder()
     ui->listWidget->setCurrentRow(mList->currentIndex()!=-1 ? mList->currentIndex() : 0);
     counter=new QString("Video Count : ");
     label->setText(counter->append(QString::number(mList->mediaCount())));
-    if(mList->mediaCount()!=0) ui->playButton->setEnabled(1);
-    else ui->playButton->setEnabled(0);
+    ui->playButton->setEnabled(0);
+    ui->frameBox->setReadOnly(1);
 }
 
 void Viewer::on_toolButton_clicked()
@@ -99,5 +104,16 @@ void Viewer::on_toolButton_clicked()
 
 void Viewer::on_frameBox_returnPressed()
 {
+    mPlayer->setPosition(ui->frameBox->text().toInt());
+}
 
+void Viewer::durChanged(QMediaPlayer::MediaStatus status)
+{
+    if(status==QMediaPlayer::BufferedMedia){
+        qDebug()<<"Dur "<<mPlayer->duration();
+        ui->allFrame->setNum(static_cast<int>(mPlayer->duration()));
+        ui->navigationBar->setRange(0,mPlayer->duration());
+        range=new QIntValidator(0,mPlayer->duration());
+        ui->frameBox->setValidator(range);
+    }
 }

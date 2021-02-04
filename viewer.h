@@ -32,10 +32,9 @@ private slots:
     void on_pFrameButton_clicked();
     void jump(const QModelIndex &index);
     void chkFolder();
-
     void on_toolButton_clicked();
-
     void on_frameBox_returnPressed();
+    void durChanged(QMediaPlayer::MediaStatus status);
 
 private:
     Ui::Viewer *ui;
