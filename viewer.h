@@ -44,6 +44,8 @@ private slots:
     void on_pFrameButton_released();
     void keyPressEvent(QKeyEvent *ev);
     void keyReleaseEvent(QKeyEvent *ev);
+    void disableControl();
+    void enableControl();
 
 private:
     Ui::Viewer *ui;

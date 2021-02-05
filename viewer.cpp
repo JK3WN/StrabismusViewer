@@ -19,16 +19,12 @@ Viewer::Viewer(QWidget *parent)
     mPlayer->setPlaylist(mList);
     mPlayer->setVideoOutput(ui->vidPlayer);
     mPlayer->setNotifyInterval(33);
-    ui->playButton->setEnabled(0);
-    ui->frameBox->setReadOnly(1);
-    range=new QIntValidator(0,0);
-    ui->frameBox->setValidator(range);
+    disableControl();
     ui->filterBox->setPlaceholderText("Search...");
 
     ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->nFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
     ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
-    ui->navigationBar->setRange(0,0);
     ui->statusbar->addWidget(label);
     label->setText(counter->append(QString::number(mList->mediaCount())));
 
@@ -61,8 +57,6 @@ void Viewer::on_playButton_clicked()
     }
 }
 
-
-
 void Viewer::jump(const QModelIndex &index)
 {
     if(index.isValid()){
@@ -70,8 +64,7 @@ void Viewer::jump(const QModelIndex &index)
         mPlayer->play();
         ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
         ui->frameBox->setValidator(range);
-        ui->playButton->setEnabled(1);
-        ui->frameBox->setReadOnly(0);
+        enableControl();
     }
     setFocus();
 }
@@ -93,8 +86,7 @@ void Viewer::chkFolder()
     ui->listWidget->setCurrentRow(mList->currentIndex()!=-1 ? mList->currentIndex() : 0);
     counter=new QString("Video Count : ");
     label->setText(counter->append(QString::number(mList->mediaCount())));
-    ui->playButton->setEnabled(0);
-    ui->frameBox->setReadOnly(1);
+    disableControl();
 }
 
 void Viewer::on_toolButton_clicked()
@@ -114,8 +106,7 @@ void Viewer::on_toolButton_clicked()
     ui->listWidget->setCurrentRow(mList->currentIndex()!=-1 ? mList->currentIndex() : 0);
     counter=new QString("Video Count : ");
     label->setText(counter->append(QString::number(mList->mediaCount())));
-    ui->playButton->setEnabled(0);
-    ui->frameBox->setReadOnly(1);
+    disableControl();
 }
 
 void Viewer::on_frameBox_returnPressed()
@@ -136,6 +127,7 @@ void Viewer::durChanged(QMediaPlayer::MediaStatus status)
 void Viewer::on_navigationBar_sliderMoved(int position)
 {
     mPlayer->setPosition(position*33);
+    setFocus();
 }
 
 void Viewer::posChanged(qint64 pos)
@@ -170,12 +162,34 @@ void Viewer::on_pFrameButton_released()
 
 void Viewer::keyPressEvent(QKeyEvent *ev)
 {
-    if(ev->key()==Qt::Key_Right) go=2;
-    else if(ev->key()==Qt::Key_Left) go=-2;
+    if(ev->key()==Qt::Key_Right&&ui->nFrameButton->isEnabled()) go=1;
+    else if(ev->key()==Qt::Key_Left&&ui->pFrameButton->isEnabled()) go=-1;
     else if(ev->key()==Qt::Key_Space&&ui->playButton->isEnabled()) on_playButton_clicked();
 }
 
 void Viewer::keyReleaseEvent(QKeyEvent *ev)
 {
     if(ev->key()==Qt::Key_Right||ev->key()==Qt::Key_Left) go=0;
+}
+
+void Viewer::disableControl()
+{
+    ui->playButton->setEnabled(0);
+    ui->nFrameButton->setEnabled(0);
+    ui->pFrameButton->setEnabled(0);
+    ui->frameBox->setReadOnly(1);
+    ui->navigationBar->setEnabled(0);
+    range=new QIntValidator(0,0);
+    ui->frameBox->setValidator(range);
+    ui->navigationBar->setRange(0,0);
+    ui->allFrame->clear();
+}
+
+void Viewer::enableControl()
+{
+    ui->playButton->setEnabled(1);
+    ui->nFrameButton->setEnabled(1);
+    ui->pFrameButton->setEnabled(1);
+    ui->frameBox->setReadOnly(0);
+    ui->navigationBar->setEnabled(1);
 }
