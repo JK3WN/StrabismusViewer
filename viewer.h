@@ -28,13 +28,15 @@ public:
 
 private slots:
     void on_playButton_clicked();
-    void on_nFrameButton_clicked();
-    void on_pFrameButton_clicked();
     void jump(const QModelIndex &index);
     void chkFolder();
     void on_toolButton_clicked();
     void on_frameBox_returnPressed();
     void durChanged(QMediaPlayer::MediaStatus status);
+    void on_navigationBar_sliderMoved(int position);
+    void posChanged(qint64 pos);
+    void on_nFrameButton_pressed();
+    void on_pFrameButton_pressed();
 
 private:
     Ui::Viewer *ui;
