@@ -13,6 +13,8 @@
 #include <QFile>
 #include <QLabel>
 #include <QVideoProbe>
+#include <QTimer>
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -37,6 +39,11 @@ private slots:
     void posChanged(qint64 pos);
     void on_nFrameButton_pressed();
     void on_pFrameButton_pressed();
+    void frontback();
+    void on_nFrameButton_released();
+    void on_pFrameButton_released();
+    void keyPressEvent(QKeyEvent *ev);
+    void keyReleaseEvent(QKeyEvent *ev);
 
 private:
     Ui::Viewer *ui;
@@ -50,5 +57,7 @@ private:
     QLabel *label;
     QString *counter;
     QIntValidator *range;
+    QTimer *timer;
+    int go=0;
 };
 #endif // VIEWER_H

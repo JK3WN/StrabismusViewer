@@ -7,10 +7,13 @@ Viewer::Viewer(QWidget *parent)
 {
     ui->setupUi(this);
     def=new QFile("defdir.txt");
+    timer=new QTimer;
+    timer->start(100);
     mPlayer=new QMediaPlayer(this,QMediaPlayer::VideoSurface);
     mList=new QMediaPlaylist();
     label=new QLabel;
     counter=new QString("Video Count : ");
+    QWidget::setFocus();
 
     mList->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     mPlayer->setPlaylist(mList);
@@ -35,6 +38,7 @@ Viewer::Viewer(QWidget *parent)
     connect(mPlayer,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(durChanged(QMediaPlayer::MediaStatus)));
     connect(mPlayer,&QMediaPlayer::positionChanged,this,&Viewer::posChanged);
     connect(ui->filterBox,SIGNAL(returnPressed()),this,SLOT(on_toolButton_clicked()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
 }
 
 Viewer::~Viewer()
@@ -69,6 +73,7 @@ void Viewer::jump(const QModelIndex &index)
         ui->playButton->setEnabled(1);
         ui->frameBox->setReadOnly(0);
     }
+    setFocus();
 }
 
 void Viewer::chkFolder()
@@ -141,10 +146,36 @@ void Viewer::posChanged(qint64 pos)
 
 void Viewer::on_nFrameButton_pressed()
 {
-    mPlayer->setPosition(mPlayer->position()+33);
+    go=1;
 }
 
 void Viewer::on_pFrameButton_pressed()
 {
-    mPlayer->setPosition(mPlayer->position()-33);
+    go=-1;
+}
+
+void Viewer::frontback()
+{
+    mPlayer->setPosition(mPlayer->position()+go*33);
+}
+void Viewer::on_nFrameButton_released()
+{
+    go=0;
+}
+
+void Viewer::on_pFrameButton_released()
+{
+    go=0;
+}
+
+void Viewer::keyPressEvent(QKeyEvent *ev)
+{
+    if(ev->key()==Qt::Key_Right) go=2;
+    else if(ev->key()==Qt::Key_Left) go=-2;
+    else if(ev->key()==Qt::Key_Space&&ui->playButton->isEnabled()) on_playButton_clicked();
+}
+
+void Viewer::keyReleaseEvent(QKeyEvent *ev)
+{
+    if(ev->key()==Qt::Key_Right||ev->key()==Qt::Key_Left) go=0;
 }
