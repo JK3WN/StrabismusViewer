@@ -31,6 +31,7 @@ Viewer::Viewer(QWidget *parent)
     label->setText(counter->append(QString::number(mList->mediaCount())));
     ui->curTime->setText(cur.toString("mm:ss"));
     ui->allTime->setText(all.toString("mm:ss"));
+    ui->nine1->setPixmap(QPixmap("./default_vid.png"));
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(ui->actionSelect_Folder,SIGNAL(triggered()),this,SLOT(chkFolder()));
