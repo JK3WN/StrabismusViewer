@@ -33,7 +33,6 @@ Viewer::Viewer(QWidget *parent)
     ui->allTime->setText(all.toString("mm:ss"));
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
-    //connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
     connect(ui->actionSelect_Folder,SIGNAL(triggered()),this,SLOT(chkFolder()));
     connect(mPlayer,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(durChanged(QMediaPlayer::MediaStatus)));
     connect(mPlayer,&QMediaPlayer::positionChanged,this,&Viewer::posChanged);
@@ -80,7 +79,7 @@ void Viewer::chkFolder()
     content.clear();
     ui->listWidget->clear();
     dir=new QDir(QFileDialog::getExistingDirectory(this,"Select Folder"));
-    vids=dir->entryList(QStringList()<<"*.mp4",QDir::Files);
+    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.mov"<<"*.wmv",QDir::Files);
     for(const QString& v:vids){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
         QFileInfo fi(v);
@@ -191,6 +190,19 @@ void Viewer::disableControl()
     ui->frameBox->setValidator(range);
     ui->navigationBar->setRange(0,0);
     ui->allFrame->clear();
+    ui->normLeft->setEnabled(0);
+    ui->normRight->setEnabled(0);
+    ui->straRight->setEnabled(0);
+    ui->straLeft->setEnabled(0);
+    ui->topLeft->setEnabled(0);
+    ui->topMid->setEnabled(0);
+    ui->topRight->setEnabled(0);
+    ui->midLeft->setEnabled(0);
+    ui->midMid->setEnabled(0);
+    ui->midRight->setEnabled(0);
+    ui->botLeft->setEnabled(0);
+    ui->botMid->setEnabled(0);
+    ui->botRight->setEnabled(0);
 }
 
 void Viewer::enableControl()
@@ -200,4 +212,17 @@ void Viewer::enableControl()
     ui->pFrameButton->setEnabled(1);
     ui->frameBox->setReadOnly(0);
     ui->navigationBar->setEnabled(1);
+    ui->normLeft->setEnabled(1);
+    ui->normRight->setEnabled(1);
+    ui->straRight->setEnabled(1);
+    ui->straLeft->setEnabled(1);
+    ui->topLeft->setEnabled(1);
+    ui->topMid->setEnabled(1);
+    ui->topRight->setEnabled(1);
+    ui->midLeft->setEnabled(1);
+    ui->midMid->setEnabled(1);
+    ui->midRight->setEnabled(1);
+    ui->botLeft->setEnabled(1);
+    ui->botMid->setEnabled(1);
+    ui->botRight->setEnabled(1);
 }
