@@ -205,8 +205,8 @@
    <widget class="QPushButton" name="topRight">
     <property name="geometry">
      <rect>
-      <x>1740</x>
-      <y>710</y>
+      <x>1700</x>
+      <y>660</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -218,8 +218,8 @@
    <widget class="QPushButton" name="topMid">
     <property name="geometry">
      <rect>
-      <x>1660</x>
-      <y>710</y>
+      <x>1620</x>
+      <y>660</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -231,8 +231,8 @@
    <widget class="QPushButton" name="topLeft">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>710</y>
+      <x>1540</x>
+      <y>660</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -244,8 +244,8 @@
    <widget class="QPushButton" name="midRight">
     <property name="geometry">
      <rect>
-      <x>1740</x>
-      <y>750</y>
+      <x>1700</x>
+      <y>700</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -257,8 +257,8 @@
    <widget class="QPushButton" name="midMid">
     <property name="geometry">
      <rect>
-      <x>1660</x>
-      <y>750</y>
+      <x>1620</x>
+      <y>700</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -270,8 +270,8 @@
    <widget class="QPushButton" name="midLeft">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>750</y>
+      <x>1540</x>
+      <y>700</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -283,8 +283,8 @@
    <widget class="QPushButton" name="botRight">
     <property name="geometry">
      <rect>
-      <x>1740</x>
-      <y>790</y>
+      <x>1700</x>
+      <y>740</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -296,8 +296,8 @@
    <widget class="QPushButton" name="botMid">
     <property name="geometry">
      <rect>
-      <x>1660</x>
-      <y>790</y>
+      <x>1620</x>
+      <y>740</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -309,8 +309,8 @@
    <widget class="QPushButton" name="botLeft">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>790</y>
+      <x>1540</x>
+      <y>740</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -322,8 +322,8 @@
    <widget class="QPushButton" name="normLeft">
     <property name="geometry">
      <rect>
-      <x>1700</x>
-      <y>620</y>
+      <x>1580</x>
+      <y>610</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -335,8 +335,8 @@
    <widget class="QPushButton" name="straLeft">
     <property name="geometry">
      <rect>
-      <x>1700</x>
-      <y>660</y>
+      <x>1740</x>
+      <y>610</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -348,8 +348,8 @@
    <widget class="QPushButton" name="straRight">
     <property name="geometry">
      <rect>
-      <x>1620</x>
-      <y>660</y>
+      <x>1660</x>
+      <y>610</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -361,8 +361,8 @@
    <widget class="QPushButton" name="normRight">
     <property name="geometry">
      <rect>
-      <x>1620</x>
-      <y>620</y>
+      <x>1500</x>
+      <y>610</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -374,8 +374,8 @@
    <widget class="QLabel" name="nine7">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>860</y>
+      <x>570</x>
+      <y>870</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -390,8 +390,8 @@
    <widget class="QLabel" name="nine4">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>770</y>
+      <x>570</x>
+      <y>780</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -406,8 +406,8 @@
    <widget class="QLabel" name="nine1">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>680</y>
+      <x>570</x>
+      <y>690</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -422,8 +422,8 @@
    <widget class="QLabel" name="nine8">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>860</y>
+      <x>890</x>
+      <y>870</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -438,8 +438,8 @@
    <widget class="QLabel" name="nine5">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>770</y>
+      <x>890</x>
+      <y>780</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -454,8 +454,8 @@
    <widget class="QLabel" name="nine2">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>680</y>
+      <x>890</x>
+      <y>690</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -470,8 +470,8 @@
    <widget class="QLabel" name="nine9">
     <property name="geometry">
      <rect>
-      <x>1250</x>
-      <y>860</y>
+      <x>1210</x>
+      <y>870</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -486,8 +486,8 @@
    <widget class="QLabel" name="nine6">
     <property name="geometry">
      <rect>
-      <x>1250</x>
-      <y>770</y>
+      <x>1210</x>
+      <y>780</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -502,8 +502,8 @@
    <widget class="QLabel" name="nine3">
     <property name="geometry">
      <rect>
-      <x>1250</x>
-      <y>680</y>
+      <x>1210</x>
+      <y>690</y>
       <width>321</width>
       <height>91</height>
      </rect>
@@ -518,8 +518,8 @@
    <widget class="QLabel" name="pNormRight">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>570</y>
+      <x>680</x>
+      <y>580</y>
       <width>161</width>
       <height>91</height>
      </rect>
@@ -534,8 +534,8 @@
    <widget class="QLabel" name="pNormLeft">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>570</y>
+      <x>840</x>
+      <y>580</y>
       <width>161</width>
       <height>91</height>
      </rect>
@@ -550,8 +550,8 @@
    <widget class="QLabel" name="pAbnoRight">
     <property name="geometry">
      <rect>
-      <x>1140</x>
-      <y>570</y>
+      <x>1100</x>
+      <y>580</y>
       <width>161</width>
       <height>91</height>
      </rect>
@@ -566,8 +566,8 @@
    <widget class="QLabel" name="pAbnoLeft">
     <property name="geometry">
      <rect>
-      <x>1300</x>
-      <y>570</y>
+      <x>1260</x>
+      <y>580</y>
       <width>161</width>
       <height>91</height>
      </rect>
@@ -582,8 +582,8 @@
    <widget class="QLabel" name="normal">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>540</y>
+      <x>790</x>
+      <y>550</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -598,8 +598,8 @@
    <widget class="QLabel" name="normalX">
     <property name="geometry">
      <rect>
-      <x>1250</x>
-      <y>540</y>
+      <x>1210</x>
+      <y>550</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -609,6 +609,19 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="photoReset">
+    <property name="geometry">
+     <rect>
+      <x>1620</x>
+      <y>560</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>사진 초기화</string>
     </property>
    </widget>
   </widget>

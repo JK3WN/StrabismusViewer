@@ -47,6 +47,7 @@ private slots:
     void keyReleaseEvent(QKeyEvent *ev);
     void disableControl();
     void enableControl();
+    void resetPhoto();
 
 private:
     Ui::Viewer *ui;
@@ -63,5 +64,6 @@ private:
     QTimer *timer;
     int go=0;
     QTime cur,all;
+    QPixmap defimg;
 };
 #endif // VIEWER_H

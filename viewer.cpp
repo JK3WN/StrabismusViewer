@@ -31,7 +31,7 @@ Viewer::Viewer(QWidget *parent)
     label->setText(counter->append(QString::number(mList->mediaCount())));
     ui->curTime->setText(cur.toString("mm:ss"));
     ui->allTime->setText(all.toString("mm:ss"));
-    ui->nine1->setPixmap(QPixmap("./default_vid.png"));
+    resetPhoto();
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(ui->actionSelect_Folder,SIGNAL(triggered()),this,SLOT(chkFolder()));
@@ -39,6 +39,7 @@ Viewer::Viewer(QWidget *parent)
     connect(mPlayer,&QMediaPlayer::positionChanged,this,&Viewer::posChanged);
     connect(ui->filterBox,SIGNAL(returnPressed()),this,SLOT(on_toolButton_clicked()));
     connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
+    connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
 }
 
 Viewer::~Viewer()
@@ -226,4 +227,23 @@ void Viewer::enableControl()
     ui->botLeft->setEnabled(1);
     ui->botMid->setEnabled(1);
     ui->botRight->setEnabled(1);
+}
+
+void Viewer::resetPhoto()
+{
+    defimg.load(":/image/default_vid.png");
+    ui->nine1->setPixmap(defimg);
+    ui->nine2->setPixmap(defimg);
+    ui->nine3->setPixmap(defimg);
+    ui->nine4->setPixmap(defimg);
+    ui->nine5->setPixmap(defimg);
+    ui->nine6->setPixmap(defimg);
+    ui->nine7->setPixmap(defimg);
+    ui->nine8->setPixmap(defimg);
+    ui->nine9->setPixmap(defimg);
+    defimg.load(":/image/default_half.png");
+    ui->pNormLeft->setPixmap(defimg);
+    ui->pNormRight->setPixmap(defimg);
+    ui->pAbnoLeft->setPixmap(defimg);
+    ui->pAbnoRight->setPixmap(defimg);
 }
