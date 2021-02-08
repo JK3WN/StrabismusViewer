@@ -14,6 +14,8 @@ Viewer::Viewer(QWidget *parent)
     label=new QLabel;
     counter=new QString("Video Count : ");
     QWidget::setFocus();
+    cur=QTime(0,0,0);
+    all=QTime(0,0,0);
 
     mList->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     mPlayer->setPlaylist(mList);
@@ -27,6 +29,8 @@ Viewer::Viewer(QWidget *parent)
     ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
     ui->statusbar->addWidget(label);
     label->setText(counter->append(QString::number(mList->mediaCount())));
+    ui->curTime->setText(cur.toString("mm:ss"));
+    ui->allTime->setText(all.toString("mm:ss"));
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     //connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
@@ -121,6 +125,8 @@ void Viewer::durChanged(QMediaPlayer::MediaStatus status)
         ui->navigationBar->setRange(0,mPlayer->duration()/33);
         range=new QIntValidator(0,mPlayer->duration()/33);
         ui->frameBox->setValidator(range);
+        all=QTime(mPlayer->duration()/3600000,(mPlayer->duration()/60000)%60,(mPlayer->duration()/1000)%60);
+        ui->allTime->setText(all.toString("mm:ss"));
     }
 }
 
@@ -134,6 +140,8 @@ void Viewer::posChanged(qint64 pos)
 {
     if(!ui->navigationBar->isSliderDown()) ui->navigationBar->setValue(pos/33);
     ui->frameBox->setText(QString::number(pos/33,10));
+    cur=QTime(pos/3600000,(pos/60000)%60,(pos/1000)%60);
+    ui->curTime->setText(cur.toString("mm:ss"));
 }
 
 void Viewer::on_nFrameButton_pressed()

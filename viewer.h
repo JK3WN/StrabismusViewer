@@ -15,6 +15,7 @@
 #include <QVideoProbe>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -61,5 +62,6 @@ private:
     QIntValidator *range;
     QTimer *timer;
     int go=0;
+    QTime cur,all;
 };
 #endif // VIEWER_H
