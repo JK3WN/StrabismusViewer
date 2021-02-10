@@ -13,12 +13,13 @@ Viewer::Viewer(QWidget *parent)
     mList=new QMediaPlaylist();
     label=new QLabel;
     counter=new QString("Video Count : ");
-    QWidget::setFocus();
+    setFocus();
     cur=QTime(0,0,0);
     all=QTime(0,0,0);
 
     mList->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     mPlayer->setPlaylist(mList);
+    mProbe->setSource(mPlayer);
     mPlayer->setVideoOutput(ui->vidPlayer);
     mPlayer->setNotifyInterval(33);
     disableControl();
@@ -40,6 +41,7 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->filterBox,SIGNAL(returnPressed()),this,SLOT(on_toolButton_clicked()));
     connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
     connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
+    connect(mProbe,SIGNAL(videoFrameProbed(QVideoFrame)),this,SLOT(processFrame(QVideoFrame)));
 }
 
 Viewer::~Viewer()
@@ -101,7 +103,7 @@ void Viewer::on_toolButton_clicked()
     mList->clear();
     content.clear();
     ui->listWidget->clear();
-    vids=dir->entryList(QStringList()<<"*.mp4",QDir::Files);
+    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.wmv"<<"*.mov",QDir::Files);
     for(const QString& v:vids.filter(filter)){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
         QFileInfo fi(v);
@@ -143,6 +145,7 @@ void Viewer::posChanged(qint64 pos)
     ui->frameBox->setText(QString::number(pos/33,10));
     cur=QTime(pos/3600000,(pos/60000)%60,(pos/1000)%60);
     ui->curTime->setText(cur.toString("mm:ss"));
+    setFocus();
 }
 
 void Viewer::on_nFrameButton_pressed()
@@ -246,4 +249,17 @@ void Viewer::resetPhoto()
     ui->pNormRight->setPixmap(defimg);
     ui->pAbnoLeft->setPixmap(defimg);
     ui->pAbnoRight->setPixmap(defimg);
+}
+
+void Viewer::processFrame(QVideoFrame const& fra)
+{
+    img=fra.image();
+}
+
+void Viewer::on_topLeft_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine1->setPixmap(eyeimg);
+    setFocus();
 }

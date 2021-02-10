@@ -49,6 +49,8 @@ private slots:
     void disableControl();
     void enableControl();
     void resetPhoto();
+    void processFrame(QVideoFrame const&);
+    void on_topLeft_clicked();
 
 private:
     Ui::Viewer *ui;
@@ -65,6 +67,8 @@ private:
     QTimer *timer;
     int go=0;
     QTime cur,all;
-    QPixmap defimg;
+    QPixmap defimg,eyeimg;
+    QVideoProbe *mProbe=new QVideoProbe(this);
+    QImage img;
 };
 #endif // VIEWER_H
