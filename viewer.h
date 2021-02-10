@@ -2,6 +2,7 @@
 #define VIEWER_H
 
 #include <QMainWindow>
+#include <QtMultimediaWidgets>
 #include <QWidget>
 #include <QDir>
 #include <QMessageBox>
