@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += multimedia multimediawidgets
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,9 +12,11 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
+    videoframer.cpp \
     viewer.cpp
 
 HEADERS += \
+    videoframer.h \
     viewer.h
 
 FORMS += \

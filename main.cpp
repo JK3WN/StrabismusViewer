@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    qputenv("QT_MULTIMEDIA_PREFERRED_PLUGINS","windowsmediafoundation");
+    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QApplication a(argc, argv);
     qputenv("QT_MULTIMEDIA_PREFERRED_PLUGINS","windowsmediafoundation");
     QCoreApplication::setApplicationName("Strabismus Viewer");

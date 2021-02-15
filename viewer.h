@@ -13,10 +13,10 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QLabel>
-#include <QVideoProbe>
 #include <QTimer>
 #include <QKeyEvent>
 #include <QTime>
+#include "videoframer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -49,8 +49,8 @@ private slots:
     void disableControl();
     void enableControl();
     void resetPhoto();
-    void processFrame(QVideoFrame const&);
     void on_topLeft_clicked();
+    void processFrame(QImage img);
 
 private:
     Ui::Viewer *ui;
@@ -68,7 +68,7 @@ private:
     int go=0;
     QTime cur,all;
     QPixmap defimg,eyeimg;
-    QVideoProbe *mProbe=new QVideoProbe(this);
     QImage img;
+    VideoFramer *framer=new VideoFramer(this);
 };
 #endif // VIEWER_H

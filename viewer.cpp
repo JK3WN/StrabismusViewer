@@ -1,5 +1,6 @@
 #include "viewer.h"
 #include "ui_viewer.h"
+#include "videoframer.h"
 
 Viewer::Viewer(QWidget *parent)
     : QMainWindow(parent)
@@ -16,10 +17,11 @@ Viewer::Viewer(QWidget *parent)
     setFocus();
     cur=QTime(0,0,0);
     all=QTime(0,0,0);
+    mPlayer->setVideoOutput(framer);
 
     mList->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     mPlayer->setPlaylist(mList);
-    mProbe->setSource(mPlayer);
+    ui->vidPlayer->setStyleSheet("background-color:black;");
     mPlayer->setVideoOutput(ui->vidPlayer);
     mPlayer->setNotifyInterval(33);
     disableControl();
@@ -41,7 +43,7 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->filterBox,SIGNAL(returnPressed()),this,SLOT(on_toolButton_clicked()));
     connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
     connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
-    connect(mProbe,SIGNAL(videoFrameProbed(QVideoFrame)),this,SLOT(processFrame(QVideoFrame)));
+    connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
 }
 
 Viewer::~Viewer()
@@ -251,15 +253,17 @@ void Viewer::resetPhoto()
     ui->pAbnoRight->setPixmap(defimg);
 }
 
-void Viewer::processFrame(QVideoFrame const& fra)
+void Viewer::processFrame(QImage img)
 {
-    img=fra.image();
+    this->img=img;
 }
 
 void Viewer::on_topLeft_clicked()
 {
+    mPlayer->setVideoOutput(framer);
     eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine1->setPixmap(eyeimg);
+    mPlayer->setVideoOutput(ui->vidPlayer);
     setFocus();
 }
