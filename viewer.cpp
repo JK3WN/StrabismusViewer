@@ -7,7 +7,6 @@ Viewer::Viewer(QWidget *parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
-    def=new QFile("defdir.txt");
     timer=new QTimer;
     timer->start(100);
     mPlayer=new QMediaPlayer(this,QMediaPlayer::VideoSurface);
@@ -21,8 +20,6 @@ Viewer::Viewer(QWidget *parent)
 
     mList->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     mPlayer->setPlaylist(mList);
-    ui->vidPlayer->setStyleSheet("background-color:black;");
-    mPlayer->setVideoOutput(ui->vidPlayer);
     mPlayer->setNotifyInterval(33);
     disableControl();
     ui->filterBox->setPlaceholderText("Search...");
@@ -34,7 +31,6 @@ Viewer::Viewer(QWidget *parent)
     label->setText(counter->append(QString::number(mList->mediaCount())));
     ui->curTime->setText(cur.toString("mm:ss"));
     ui->allTime->setText(all.toString("mm:ss"));
-    resetPhoto();
 
     connect(ui->listWidget,&QAbstractItemView::activated,this,&Viewer::jump);
     connect(ui->actionSelect_Folder,SIGNAL(triggered()),this,SLOT(chkFolder()));
@@ -44,6 +40,11 @@ Viewer::Viewer(QWidget *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
     connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
     connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
+
+    defimg.load(":/image/default_vid.png");
+    defimg=defimg.scaled(1441,406);
+    ui->backLabel->setPixmap(defimg);
+    resetPhoto();
 }
 
 Viewer::~Viewer()
@@ -164,6 +165,7 @@ void Viewer::frontback()
 {
     mPlayer->setPosition(mPlayer->position()+go*33);
 }
+
 void Viewer::on_nFrameButton_released()
 {
     go=0;
@@ -205,11 +207,13 @@ void Viewer::disableControl()
     ui->topMid->setEnabled(0);
     ui->topRight->setEnabled(0);
     ui->midLeft->setEnabled(0);
-    ui->midMid->setEnabled(0);
+    //ui->midMid->setEnabled(0);
     ui->midRight->setEnabled(0);
     ui->botLeft->setEnabled(0);
     ui->botMid->setEnabled(0);
     ui->botRight->setEnabled(0);
+    ui->photoReset->setEnabled(0);
+    ui->saveButton->setEnabled(0);
 }
 
 void Viewer::enableControl()
@@ -227,11 +231,13 @@ void Viewer::enableControl()
     ui->topMid->setEnabled(1);
     ui->topRight->setEnabled(1);
     ui->midLeft->setEnabled(1);
-    ui->midMid->setEnabled(1);
+    //ui->midMid->setEnabled(1);
     ui->midRight->setEnabled(1);
     ui->botLeft->setEnabled(1);
     ui->botMid->setEnabled(1);
     ui->botRight->setEnabled(1);
+    ui->photoReset->setEnabled(1);
+    ui->saveButton->setEnabled(1);
 }
 
 void Viewer::resetPhoto()
@@ -241,29 +247,133 @@ void Viewer::resetPhoto()
     ui->nine2->setPixmap(defimg);
     ui->nine3->setPixmap(defimg);
     ui->nine4->setPixmap(defimg);
-    ui->nine5->setPixmap(defimg);
     ui->nine6->setPixmap(defimg);
     ui->nine7->setPixmap(defimg);
     ui->nine8->setPixmap(defimg);
     ui->nine9->setPixmap(defimg);
-    defimg.load(":/image/default_half.png");
+    defimg=defimg.scaled(161,91);
     ui->pNormLeft->setPixmap(defimg);
     ui->pNormRight->setPixmap(defimg);
     ui->pAbnoLeft->setPixmap(defimg);
     ui->pAbnoRight->setPixmap(defimg);
+    ui->nine5L->setPixmap(defimg);
+    ui->nine5R->setPixmap(defimg);
 }
 
 void Viewer::processFrame(QImage img)
 {
     this->img=img;
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(1440,405,Qt::KeepAspectRatio);
+    ui->vidLabel->setPixmap(eyeimg);
 }
 
 void Viewer::on_topLeft_clicked()
 {
-    mPlayer->setVideoOutput(framer);
     eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine1->setPixmap(eyeimg);
-    mPlayer->setVideoOutput(ui->vidPlayer);
+    setFocus();
+}
+
+void Viewer::on_topMid_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine2->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_topRight_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine3->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_midLeft_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine4->setPixmap(eyeimg);
+    setFocus();
+}
+/*
+void Viewer::on_midMid_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    //ui->nine5->setPixmap(eyeimg);
+    setFocus();
+}
+*/
+void Viewer::on_midRight_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine6->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_botLeft_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine7->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_botMid_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine8->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_botRight_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    ui->nine9->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_normRight_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    eyeimg=eyeimg.copy(0,0,eyeimg.width()/2,eyeimg.height());
+    ui->pNormRight->setPixmap(eyeimg);
+    ui->nine5R->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_normLeft_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
+    ui->pNormLeft->setPixmap(eyeimg);
+    ui->nine5L->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_straRight_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    eyeimg=eyeimg.copy(0,0,eyeimg.width()/2,eyeimg.height());
+    ui->pAbnoRight->setPixmap(eyeimg);
+    setFocus();
+}
+
+void Viewer::on_straLeft_clicked()
+{
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
+    eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
+    ui->pAbnoLeft->setPixmap(eyeimg);
     setFocus();
 }

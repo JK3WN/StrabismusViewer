@@ -51,6 +51,20 @@ private slots:
     void resetPhoto();
     void on_topLeft_clicked();
     void processFrame(QImage img);
+    void on_topMid_clicked();
+    void on_topRight_clicked();
+    void on_midLeft_clicked();
+    //void on_midMid_clicked();
+    void on_midRight_clicked();
+    void on_botLeft_clicked();
+    void on_botMid_clicked();
+    void on_botRight_clicked();
+    void on_normRight_clicked();
+    void on_normLeft_clicked();
+
+    void on_straRight_clicked();
+
+    void on_straLeft_clicked();
 
 private:
     Ui::Viewer *ui;
@@ -59,7 +73,6 @@ private:
     QDir *dir;
     QStringList vids;
     QList<QMediaContent> content;
-    QFile *def;
     QTextStream *defloc;
     QLabel *label;
     QString *counter;
@@ -70,5 +83,6 @@ private:
     QPixmap defimg,eyeimg;
     QImage img;
     VideoFramer *framer=new VideoFramer(this);
+    QFile fileImg;
 };
 #endif // VIEWER_H

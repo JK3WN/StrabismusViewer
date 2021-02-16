@@ -14,16 +14,6 @@
    <string>Strabismus Viewer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QVideoWidget" name="vidPlayer" native="true">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>1441</width>
-      <height>406</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QSlider" name="navigationBar">
     <property name="geometry">
      <rect>
@@ -254,19 +244,6 @@
      <string>오른쪽 중앙</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="midMid">
-    <property name="geometry">
-     <rect>
-      <x>1620</x>
-      <y>700</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>중앙</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="midLeft">
     <property name="geometry">
      <rect>
@@ -435,12 +412,12 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="nine5">
+   <widget class="QLabel" name="nine5L">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>1050</x>
       <y>780</y>
-      <width>321</width>
+      <width>161</width>
       <height>91</height>
      </rect>
     </property>
@@ -448,7 +425,7 @@
      <string>TextLabel</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="nine2">
@@ -528,7 +505,7 @@
      <string>TextLabel</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="pNormLeft">
@@ -544,7 +521,7 @@
      <string>TextLabel</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="pAbnoRight">
@@ -560,7 +537,7 @@
      <string>TextLabel</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="pAbnoLeft">
@@ -576,7 +553,7 @@
      <string>TextLabel</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="normal">
@@ -624,6 +601,112 @@
      <string>사진 초기화</string>
     </property>
    </widget>
+   <widget class="QLabel" name="vidLabel">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>1441</width>
+      <height>406</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="backLabel">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>1441</width>
+      <height>406</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>1620</x>
+      <y>790</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>사진 저장</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="nine5R">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>780</y>
+      <width>161</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <zorder>backLabel</zorder>
+   <zorder>navigationBar</zorder>
+   <zorder>playButton</zorder>
+   <zorder>nFrameButton</zorder>
+   <zorder>pFrameButton</zorder>
+   <zorder>listWidget</zorder>
+   <zorder>toolButton</zorder>
+   <zorder>filterBox</zorder>
+   <zorder>frameBox</zorder>
+   <zorder>slash1</zorder>
+   <zorder>allFrame</zorder>
+   <zorder>curTime</zorder>
+   <zorder>allTime</zorder>
+   <zorder>slash2</zorder>
+   <zorder>topRight</zorder>
+   <zorder>topMid</zorder>
+   <zorder>topLeft</zorder>
+   <zorder>midRight</zorder>
+   <zorder>midLeft</zorder>
+   <zorder>botRight</zorder>
+   <zorder>botMid</zorder>
+   <zorder>botLeft</zorder>
+   <zorder>normLeft</zorder>
+   <zorder>straLeft</zorder>
+   <zorder>straRight</zorder>
+   <zorder>normRight</zorder>
+   <zorder>nine7</zorder>
+   <zorder>nine4</zorder>
+   <zorder>nine1</zorder>
+   <zorder>nine8</zorder>
+   <zorder>nine5L</zorder>
+   <zorder>nine2</zorder>
+   <zorder>nine9</zorder>
+   <zorder>nine6</zorder>
+   <zorder>nine3</zorder>
+   <zorder>pNormRight</zorder>
+   <zorder>pNormLeft</zorder>
+   <zorder>pAbnoRight</zorder>
+   <zorder>pAbnoLeft</zorder>
+   <zorder>normal</zorder>
+   <zorder>normalX</zorder>
+   <zorder>photoReset</zorder>
+   <zorder>vidLabel</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>nine5R</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -649,14 +732,6 @@
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QVideoWidget</class>
-   <extends>QWidget</extends>
-   <header>viewer.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
