@@ -61,10 +61,9 @@ private slots:
     void on_botRight_clicked();
     void on_normRight_clicked();
     void on_normLeft_clicked();
-
     void on_straRight_clicked();
-
     void on_straLeft_clicked();
+    void on_saveButton_clicked();
 
 private:
     Ui::Viewer *ui;
@@ -80,9 +79,10 @@ private:
     QTimer *timer;
     int go=0;
     QTime cur,all;
-    QPixmap defimg,eyeimg;
+    QPixmap defimg,eyeimg,saveImg[12];
     QImage img;
     VideoFramer *framer=new VideoFramer(this);
     QFile fileImg;
+    QStringList fileName={"NormalRight.png","NormalLeft.png","AbnormalRight.png","AbnormalLeft.png","TopLeft.png","TopMiddle.png","TopRight.png","MiddleLeft.png","MiddleRight.png","BottomLeft.png","BottomMiddle.png","BottomRight.png"};
 };
 #endif // VIEWER_H

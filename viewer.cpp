@@ -5,7 +5,7 @@
 Viewer::Viewer(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Viewer)
-{
+{   
     ui->setupUi(this);
     timer=new QTimer;
     timer->start(100);
@@ -251,6 +251,7 @@ void Viewer::resetPhoto()
     ui->nine7->setPixmap(defimg);
     ui->nine8->setPixmap(defimg);
     ui->nine9->setPixmap(defimg);
+    for(int i=4;i<12;i++) saveImg[i]=defimg.copy(0,0,defimg.width(),defimg.height());
     defimg=defimg.scaled(161,91);
     ui->pNormLeft->setPixmap(defimg);
     ui->pNormRight->setPixmap(defimg);
@@ -258,6 +259,7 @@ void Viewer::resetPhoto()
     ui->pAbnoRight->setPixmap(defimg);
     ui->nine5L->setPixmap(defimg);
     ui->nine5R->setPixmap(defimg);
+    for(int i=0;i<4;i++) saveImg[i]=defimg.copy(0,0,defimg.width(),defimg.height());
 }
 
 void Viewer::processFrame(QImage img)
@@ -271,6 +273,7 @@ void Viewer::processFrame(QImage img)
 void Viewer::on_topLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[4]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine1->setPixmap(eyeimg);
     setFocus();
@@ -279,6 +282,7 @@ void Viewer::on_topLeft_clicked()
 void Viewer::on_topMid_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[5]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine2->setPixmap(eyeimg);
     setFocus();
@@ -287,6 +291,7 @@ void Viewer::on_topMid_clicked()
 void Viewer::on_topRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[6]=eyeimg;
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine3->setPixmap(eyeimg);
     setFocus();
@@ -295,6 +300,7 @@ void Viewer::on_topRight_clicked()
 void Viewer::on_midLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[7]=eyeimg;
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine4->setPixmap(eyeimg);
     setFocus();
@@ -311,6 +317,7 @@ void Viewer::on_midMid_clicked()
 void Viewer::on_midRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[8]=eyeimg;
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine6->setPixmap(eyeimg);
     setFocus();
@@ -319,6 +326,7 @@ void Viewer::on_midRight_clicked()
 void Viewer::on_botLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[9]=eyeimg;
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine7->setPixmap(eyeimg);
     setFocus();
@@ -327,6 +335,7 @@ void Viewer::on_botLeft_clicked()
 void Viewer::on_botMid_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[10]=eyeimg;
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine8->setPixmap(eyeimg);
     setFocus();
@@ -335,6 +344,7 @@ void Viewer::on_botMid_clicked()
 void Viewer::on_botRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
+    saveImg[11]=eyeimg;
     eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     ui->nine9->setPixmap(eyeimg);
     setFocus();
@@ -343,8 +353,9 @@ void Viewer::on_botRight_clicked()
 void Viewer::on_normRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     eyeimg=eyeimg.copy(0,0,eyeimg.width()/2,eyeimg.height());
+    saveImg[0]=eyeimg;
+    eyeimg=eyeimg.scaled(160,90,Qt::KeepAspectRatio);
     ui->pNormRight->setPixmap(eyeimg);
     ui->nine5R->setPixmap(eyeimg);
     setFocus();
@@ -353,8 +364,9 @@ void Viewer::on_normRight_clicked()
 void Viewer::on_normLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
+    saveImg[1]=eyeimg;
+    eyeimg=eyeimg.scaled(160,90,Qt::KeepAspectRatio);
     ui->pNormLeft->setPixmap(eyeimg);
     ui->nine5L->setPixmap(eyeimg);
     setFocus();
@@ -363,8 +375,9 @@ void Viewer::on_normLeft_clicked()
 void Viewer::on_straRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     eyeimg=eyeimg.copy(0,0,eyeimg.width()/2,eyeimg.height());
+    saveImg[2]=eyeimg;
+    eyeimg=eyeimg.scaled(160,90,Qt::KeepAspectRatio);
     ui->pAbnoRight->setPixmap(eyeimg);
     setFocus();
 }
@@ -372,8 +385,21 @@ void Viewer::on_straRight_clicked()
 void Viewer::on_straLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(320,90,Qt::KeepAspectRatio);
     eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
+    saveImg[3]=eyeimg;
+    eyeimg=eyeimg.scaled(160,90,Qt::KeepAspectRatio);
     ui->pAbnoLeft->setPixmap(eyeimg);
     setFocus();
+}
+
+void Viewer::on_saveButton_clicked()
+{
+    dir->mkdir("Result");
+    QDir::setCurrent(dir->absolutePath()+"/Result");
+    for(int i=0;i<12;i++){
+        fileImg.setFileName(fileName[i]);
+        fileImg.open(QIODevice::WriteOnly);
+        saveImg[i].save(&fileImg,"PNG");
+        fileImg.close();
+    }
 }
