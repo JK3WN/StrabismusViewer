@@ -25,9 +25,11 @@ Viewer::Viewer(QWidget *parent)
     ui->filterBox->setPlaceholderText("Search...");
 
     ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    ui->nFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
-    ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
+    ui->nFrameButton->setIcon(style()->standardIcon(QStyle::SP_MediaSeekForward));
+    ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_MediaSeekBackward));
+    ui->actionSelect_Folder->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
     ui->statusbar->addWidget(label);
+    ui->statusbar->setSizeGripEnabled(0);
     label->setText(counter->append(QString::number(mList->mediaCount())));
     ui->curTime->setText(cur.toString("mm:ss"));
     ui->allTime->setText(all.toString("mm:ss"));
