@@ -1,5 +1,5 @@
 # StrabismusViewer
-Created by Qt 5.14.2
+Created by Qt 5.15.2
 
 폴더를 정해준 후, 그 폴더 안에 있는 mp4 파일 이름 리스트를 보여줌.
 
