@@ -47,7 +47,6 @@ Viewer::Viewer(QWidget *parent)
     defimg=defimg.scaled(ui->vidLabel->width(),ui->vidLabel->height());
     ui->vidLabel->setPixmap(defimg);
     resetPhoto();
-    qDebug()<<ui->nine1->width()<<", "<<ui->nine1->height();
 }
 
 Viewer::~Viewer()
@@ -168,7 +167,6 @@ void Viewer::on_pFrameButton_pressed()
 void Viewer::frontback()
 {
     mPlayer->setPosition(mPlayer->position()+go*33);
-    qDebug()<<ui->nine1->width()<<", "<<ui->nine1->height();
 }
 
 void Viewer::on_nFrameButton_released()
