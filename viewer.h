@@ -64,6 +64,10 @@ private slots:
     void on_straRight_clicked();
     void on_straLeft_clicked();
     void on_saveButton_clicked();
+    void resized();
+
+protected:
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::Viewer *ui;
