@@ -44,9 +44,10 @@ Viewer::Viewer(QWidget *parent)
     connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
 
     defimg.load(":/image/default_vid.png");
-    defimg=defimg.scaled(1441,406);
-    ui->backLabel->setPixmap(defimg);
+    defimg=defimg.scaled(ui->vidLabel->width(),ui->vidLabel->height());
+    ui->vidLabel->setPixmap(defimg);
     resetPhoto();
+    qDebug()<<ui->nine1->width()<<", "<<ui->nine1->height();
 }
 
 Viewer::~Viewer()
@@ -167,6 +168,7 @@ void Viewer::on_pFrameButton_pressed()
 void Viewer::frontback()
 {
     mPlayer->setPosition(mPlayer->position()+go*33);
+    qDebug()<<ui->nine1->width()<<", "<<ui->nine1->height();
 }
 
 void Viewer::on_nFrameButton_released()
@@ -248,7 +250,9 @@ void Viewer::resetPhoto()
     defimg.load(":/image/default_vid.png");
     defimg=defimg.scaled(ui->nine1->width(),ui->nine1->height());
     ui->nine1->setPixmap(defimg);
+    //qDebug()<<ui->nine1->width()<<", "<<ui->nine1->height();
     ui->nine2->setPixmap(defimg);
+    //qDebug()<<ui->nine2->width()<<", "<<ui->nine2->height();
     ui->nine3->setPixmap(defimg);
     ui->nine4->setPixmap(defimg);
     ui->nine6->setPixmap(defimg);
@@ -263,6 +267,7 @@ void Viewer::resetPhoto()
     ui->pAbnoRight->setPixmap(defimg);
     ui->nine5L->setPixmap(defimg);
     ui->nine5R->setPixmap(defimg);
+    //qDebug()<<ui->nine5R->width()<<", "<<ui->nine5R->height();
     for(int i=0;i<4;i++) saveImg[i]=defimg.copy(0,0,defimg.width(),defimg.height());
 }
 
