@@ -60,7 +60,7 @@ bool VideoFramer::present(const QVideoFrame &frame)
                            cloneFrame.width(),
                            cloneFrame.height(),
                            QVideoFrame::imageFormatFromPixelFormat(cloneFrame .pixelFormat()));
-        emit frameAvailable(image); // this is very important
+        emit frameAvailable(image);
         cloneFrame.unmap();
     }
 

@@ -413,7 +413,9 @@ void Viewer::on_saveButton_clicked()
 
 void Viewer::resized()
 {
-
+    eyeimg=QPixmap::fromImage(img);
+    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
+    ui->vidLabel->setPixmap(eyeimg);
 }
 
 void Viewer::resizeEvent(QResizeEvent *event)
