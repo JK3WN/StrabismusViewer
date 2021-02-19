@@ -43,6 +43,9 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
     connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
 
+    ui->filterBox->setFixedWidth(140);
+    ui->btnLayout->setSizeConstraint(QFormLayout::SetFixedSize);
+
     defimg.load(":/image/default_vid.png");
     defimg=defimg.scaled(ui->vidLabel->width(),ui->vidLabel->height());
     ui->vidLabel->setPixmap(defimg);
@@ -248,9 +251,7 @@ void Viewer::resetPhoto()
     defimg.load(":/image/default_vid.png");
     defimg=defimg.scaled(ui->nine1->width(),ui->nine1->height());
     ui->nine1->setPixmap(defimg);
-    //qDebug()<<ui->nine1->width()<<", "<<ui->nine1->height();
     ui->nine2->setPixmap(defimg);
-    //qDebug()<<ui->nine2->width()<<", "<<ui->nine2->height();
     ui->nine3->setPixmap(defimg);
     ui->nine4->setPixmap(defimg);
     ui->nine6->setPixmap(defimg);
@@ -265,7 +266,6 @@ void Viewer::resetPhoto()
     ui->pAbnoRight->setPixmap(defimg);
     ui->nine5L->setPixmap(defimg);
     ui->nine5R->setPixmap(defimg);
-    //qDebug()<<ui->nine5R->width()<<", "<<ui->nine5R->height();
     for(int i=0;i<4;i++) saveImg[i]=defimg.copy(0,0,defimg.width(),defimg.height());
 }
 
@@ -413,13 +413,23 @@ void Viewer::on_saveButton_clicked()
 
 void Viewer::resized()
 {
-    eyeimg=QPixmap::fromImage(img);
+    if(img.isNull()) eyeimg.load(":/image/default_vid.png");
+    else eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
     ui->vidLabel->setPixmap(eyeimg);
+    eyeimg=saveImg[0];
+    eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio);
+    ui->pNormRight->setPixmap(eyeimg);
+    setFocus();
 }
 
 void Viewer::resizeEvent(QResizeEvent *event)
 {
     resized();
     QWidget::resizeEvent(event);
+}
+
+void Viewer::changeEvent(QEvent *event)
+{
+    if(event->type()==QEvent::WindowStateChange) resized();
 }
