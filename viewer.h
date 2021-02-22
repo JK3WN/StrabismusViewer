@@ -79,15 +79,17 @@ private:
     QList<QMediaContent> content;
     QTextStream *defloc;
     QLabel *label;
-    QString *counter;
+    QString *counter,now;
     QIntValidator *range;
     QTimer *timer;
-    int go=0,picHeight;
+    int go=0;
     QTime cur,all;
     QPixmap defimg,eyeimg,saveImg[12];
     QImage img;
     VideoFramer *framer=new VideoFramer(this);
     QFile fileImg;
+    bool capt[12]={false};
+    QPainter painter;
     QStringList fileName={"NormalRight.png","NormalLeft.png","AbnormalRight.png","AbnormalLeft.png","TopLeft.png","TopMiddle.png","TopRight.png","MiddleLeft.png","MiddleRight.png","BottomLeft.png","BottomMiddle.png","BottomRight.png"};
 };
 #endif // VIEWER_H
