@@ -43,9 +43,6 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
     connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
 
-    ui->filterBox->setFixedWidth(140);
-    ui->btnLayout->setSizeConstraint(QFormLayout::SetFixedSize);
-
     defimg.load(":/image/default_vid.png");
     defimg=defimg.scaled(ui->vidLabel->width(),ui->vidLabel->height());
     ui->vidLabel->setPixmap(defimg);
@@ -420,6 +417,43 @@ void Viewer::resized()
     eyeimg=saveImg[0];
     eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio);
     ui->pNormRight->setPixmap(eyeimg);
+    eyeimg=eyeimg.scaled(ui->nine5R->width(),ui->nine5R->height(),Qt::KeepAspectRatio);
+    ui->nine5R->setPixmap(eyeimg);
+    eyeimg=saveImg[1];
+    eyeimg=eyeimg.scaled(ui->pNormLeft->width(),ui->pNormLeft->height(),Qt::KeepAspectRatio);
+    ui->pNormLeft->setPixmap(eyeimg);
+    eyeimg=eyeimg.scaled(ui->nine5L->width(),ui->nine5L->height(),Qt::KeepAspectRatio);
+    ui->nine5L->setPixmap(eyeimg);
+    eyeimg=saveImg[2];
+    eyeimg=eyeimg.scaled(ui->pAbnoRight->width(),ui->pAbnoRight->height(),Qt::KeepAspectRatio);
+    ui->pAbnoRight->setPixmap(eyeimg);
+    eyeimg=saveImg[3];
+    eyeimg=eyeimg.scaled(ui->pAbnoLeft->width(),ui->pAbnoLeft->height(),Qt::KeepAspectRatio);
+    ui->pAbnoLeft->setPixmap(eyeimg);
+    eyeimg=saveImg[4];
+    eyeimg=eyeimg.scaled(ui->nine1->width(),ui->nine1->height(),Qt::KeepAspectRatio);
+    ui->nine1->setPixmap(eyeimg);
+    eyeimg=saveImg[5];
+    eyeimg=eyeimg.scaled(ui->nine2->width(),ui->nine2->height(),Qt::KeepAspectRatio);
+    ui->nine2->setPixmap(eyeimg);
+    eyeimg=saveImg[6];
+    eyeimg=eyeimg.scaled(ui->nine3->width(),ui->nine3->height(),Qt::KeepAspectRatio);
+    ui->nine3->setPixmap(eyeimg);
+    eyeimg=saveImg[7];
+    eyeimg=eyeimg.scaled(ui->nine4->width(),ui->nine4->height(),Qt::KeepAspectRatio);
+    ui->nine4->setPixmap(eyeimg);
+    eyeimg=saveImg[8];
+    eyeimg=eyeimg.scaled(ui->nine6->width(),ui->nine6->height(),Qt::KeepAspectRatio);
+    ui->nine6->setPixmap(eyeimg);
+    eyeimg=saveImg[9];
+    eyeimg=eyeimg.scaled(ui->nine7->width(),ui->nine7->height(),Qt::KeepAspectRatio);
+    ui->nine7->setPixmap(eyeimg);
+    eyeimg=saveImg[10];
+    eyeimg=eyeimg.scaled(ui->nine8->width(),ui->nine8->height(),Qt::KeepAspectRatio);
+    ui->nine8->setPixmap(eyeimg);
+    eyeimg=saveImg[11];
+    eyeimg=eyeimg.scaled(ui->nine9->width(),ui->nine9->height(),Qt::KeepAspectRatio);
+    ui->nine9->setPixmap(eyeimg);
     setFocus();
 }
 
