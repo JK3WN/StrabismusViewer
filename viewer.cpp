@@ -278,7 +278,7 @@ void Viewer::processFrame(QImage img)
 {
     this->img=img;
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->vidLabel->setPixmap(eyeimg);
 }
 
@@ -286,7 +286,7 @@ void Viewer::on_topLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[4]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine1->width(),ui->nine1->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine1->width(),ui->nine1->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine1->setPixmap(eyeimg);
     capt[4]=true;
     setFocus();
@@ -296,7 +296,7 @@ void Viewer::on_topMid_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[5]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine2->width(),ui->nine2->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine2->width(),ui->nine2->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine2->setPixmap(eyeimg);
     capt[5]=true;
     setFocus();
@@ -306,7 +306,7 @@ void Viewer::on_topRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[6]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine3->width(),ui->nine3->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine3->width(),ui->nine3->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine3->setPixmap(eyeimg);
     capt[6]=true;
     setFocus();
@@ -316,7 +316,7 @@ void Viewer::on_midLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[7]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine4->width(),ui->nine4->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine4->width(),ui->nine4->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine4->setPixmap(eyeimg);
     capt[7]=true;
     setFocus();
@@ -334,7 +334,7 @@ void Viewer::on_midRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[8]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine6->width(),ui->nine6->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine6->width(),ui->nine6->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine6->setPixmap(eyeimg);
     capt[8]=true;
     setFocus();
@@ -344,7 +344,7 @@ void Viewer::on_botLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[9]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine7->width(),ui->nine7->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine7->width(),ui->nine7->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine7->setPixmap(eyeimg);
     capt[9]=true;
     setFocus();
@@ -354,7 +354,7 @@ void Viewer::on_botMid_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[10]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine8->width(),ui->nine8->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine8->width(),ui->nine8->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine8->setPixmap(eyeimg);
     capt[10]=true;
     setFocus();
@@ -364,7 +364,7 @@ void Viewer::on_botRight_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
     saveImg[11]=eyeimg.copy(0,0,eyeimg.width(),eyeimg.height());
-    eyeimg=eyeimg.scaled(ui->nine9->width(),ui->nine9->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine9->width(),ui->nine9->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine9->setPixmap(eyeimg);
     capt[11]=true;
     setFocus();
@@ -375,7 +375,7 @@ void Viewer::on_normRight_clicked()
     eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.copy(0,0,eyeimg.width()/2,eyeimg.height());
     saveImg[0]=eyeimg;
-    eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pNormRight->setPixmap(eyeimg);
     ui->nine5R->setPixmap(eyeimg);
     capt[0]=true;
@@ -387,7 +387,7 @@ void Viewer::on_normLeft_clicked()
     eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
     saveImg[1]=eyeimg;
-    eyeimg=eyeimg.scaled(ui->pNormLeft->width(),ui->pNormLeft->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pNormLeft->width(),ui->pNormLeft->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pNormLeft->setPixmap(eyeimg);
     ui->nine5L->setPixmap(eyeimg);
     capt[1]=true;
@@ -399,7 +399,7 @@ void Viewer::on_straRight_clicked()
     eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.copy(0,0,eyeimg.width()/2,eyeimg.height());
     saveImg[2]=eyeimg;
-    eyeimg=eyeimg.scaled(ui->pAbnoRight->width(),ui->pAbnoRight->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pAbnoRight->width(),ui->pAbnoRight->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pAbnoRight->setPixmap(eyeimg);
     capt[2]=true;
     setFocus();
@@ -410,7 +410,7 @@ void Viewer::on_straLeft_clicked()
     eyeimg=QPixmap::fromImage(img);
     eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
     saveImg[3]=eyeimg;
-    eyeimg=eyeimg.scaled(ui->pAbnoLeft->width(),ui->pAbnoLeft->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pAbnoLeft->width(),ui->pAbnoLeft->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pAbnoLeft->setPixmap(eyeimg);
     capt[3]=true;
     setFocus();
@@ -469,7 +469,7 @@ void Viewer::resized()
 {
     if(img.isNull()) eyeimg.load(":/image/default_full.png");
     else eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->vidLabel->setPixmap(eyeimg);
     sh=ui->vidLabel->height()/4<ui->vidLabel->width()*9/144?ui->vidLabel->height()/4:ui->vidLabel->width()*9/144;
     ui->pNormRight->setFixedSize(sh*16/9,sh);
@@ -487,44 +487,44 @@ void Viewer::resized()
     ui->nine8->setFixedSize(sh*32/9,sh);
     ui->nine9->setFixedSize(sh*32/9,sh);
     eyeimg=saveImg[0];
-    eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pNormRight->setPixmap(eyeimg);
-    eyeimg=eyeimg.scaled(ui->nine5R->width(),ui->nine5R->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine5R->width(),ui->nine5R->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine5R->setPixmap(eyeimg);
     eyeimg=saveImg[1];
-    eyeimg=eyeimg.scaled(ui->pNormLeft->width(),ui->pNormLeft->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pNormLeft->width(),ui->pNormLeft->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pNormLeft->setPixmap(eyeimg);
-    eyeimg=eyeimg.scaled(ui->nine5L->width(),ui->nine5L->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine5L->width(),ui->nine5L->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine5L->setPixmap(eyeimg);
     eyeimg=saveImg[2];
-    eyeimg=eyeimg.scaled(ui->pAbnoRight->width(),ui->pAbnoRight->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pAbnoRight->width(),ui->pAbnoRight->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pAbnoRight->setPixmap(eyeimg);
     eyeimg=saveImg[3];
-    eyeimg=eyeimg.scaled(ui->pAbnoLeft->width(),ui->pAbnoLeft->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->pAbnoLeft->width(),ui->pAbnoLeft->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pAbnoLeft->setPixmap(eyeimg);
     eyeimg=saveImg[4];
-    eyeimg=eyeimg.scaled(ui->nine1->width(),ui->nine1->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine1->width(),ui->nine1->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine1->setPixmap(eyeimg);
     eyeimg=saveImg[5];
-    eyeimg=eyeimg.scaled(ui->nine2->width(),ui->nine2->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine2->width(),ui->nine2->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine2->setPixmap(eyeimg);
     eyeimg=saveImg[6];
-    eyeimg=eyeimg.scaled(ui->nine3->width(),ui->nine3->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine3->width(),ui->nine3->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine3->setPixmap(eyeimg);
     eyeimg=saveImg[7];
-    eyeimg=eyeimg.scaled(ui->nine4->width(),ui->nine4->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine4->width(),ui->nine4->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine4->setPixmap(eyeimg);
     eyeimg=saveImg[8];
-    eyeimg=eyeimg.scaled(ui->nine6->width(),ui->nine6->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine6->width(),ui->nine6->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine6->setPixmap(eyeimg);
     eyeimg=saveImg[9];
-    eyeimg=eyeimg.scaled(ui->nine7->width(),ui->nine7->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine7->width(),ui->nine7->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine7->setPixmap(eyeimg);
     eyeimg=saveImg[10];
-    eyeimg=eyeimg.scaled(ui->nine8->width(),ui->nine8->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine8->width(),ui->nine8->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine8->setPixmap(eyeimg);
     eyeimg=saveImg[11];
-    eyeimg=eyeimg.scaled(ui->nine9->width(),ui->nine9->height(),Qt::KeepAspectRatio);
+    eyeimg=eyeimg.scaled(ui->nine9->width(),ui->nine9->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->nine9->setPixmap(eyeimg);
     setFocus();
 }
