@@ -82,7 +82,7 @@ private:
     QString *counter,now;
     QIntValidator *range;
     QTimer *timer;
-    int go=0;
+    int go=0,sh=90;
     QTime cur,all;
     QPixmap defimg,eyeimg,saveImg[12];
     QImage img;

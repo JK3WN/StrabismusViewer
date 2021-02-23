@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/image">
-        <file>default_vid.png</file>
+        <file>default_full.png</file>
+        <file>default_short.png</file>
     </qresource>
 </RCC>
