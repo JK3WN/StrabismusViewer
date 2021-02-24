@@ -42,7 +42,10 @@ Viewer::Viewer(QWidget *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
     connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
     connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
+    connect(saver,&Saver::saving,this,&Viewer::saveBar);
 
+    ui->saveLabel->setVisible(0);
+    ui->saveProgress->setVisible(0);
     ui->nineLayout->setAlignment(Qt::AlignCenter);
     ui->fourLayout->setAlignment(Qt::AlignCenter);
     defimg.load(":/image/default_full.png");
@@ -418,50 +421,21 @@ void Viewer::on_straLeft_clicked()
 
 void Viewer::on_saveButton_clicked()
 {
-    int t=0;
+    ui->saveButton->setEnabled(0);
+    ui->saveLabel->setVisible(1);
+    ui->saveProgress->setVisible(1);
+    ui->saveProgress->setValue(0);
+    max=1;
     for(int i=0;i<12;i++){
-        if(capt[i]) t++;
+        if(capt[i]) max++;
     }
-    if(t==0) return;
+    if(max==1) return;
+    ui->saveLabel->setText("Saving "+QString::number(1)+"/"+QString::number(max)+" Images");
+    ui->saveProgress->setMaximum(max);
     dir->mkdir(now);
     QDir::setCurrent(dir->absolutePath()+"/"+now);
-    QPixmap resImg(980,430);
-    painter.begin(&resImg);
-    painter.fillRect(0,0,980,430,QColor(255,255,255,255));
-    painter.drawText(120,0,320,20,Qt::AlignCenter,"Normal");
-    painter.drawText(540,0,320,20,Qt::AlignCenter,"Strabismus");
-    QSize size=saveImg[0].size().scaled(160,90,Qt::KeepAspectRatio);
-    if(capt[0]){
-        painter.drawPixmap(280-size.width(),85-size.height()/2,size.width(),size.height(),saveImg[0],0,0,saveImg[0].width(),saveImg[0].height());
-        painter.drawPixmap(490-size.width(),285-size.height()/2,size.width(),size.height(),saveImg[0],0,0,saveImg[0].width(),saveImg[0].height());
-    }
-    if(capt[1]){
-        painter.drawPixmap(280,85-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
-        painter.drawPixmap(490,285-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
-    }
-    if(capt[2]) painter.drawPixmap(700-size.width(),85-size.height()/2,size.width(),size.height(),saveImg[2],0,0,saveImg[2].width(),saveImg[2].height());
-    if(capt[3]) painter.drawPixmap(700,85-size.height()/2,size.width(),size.height(),saveImg[3],0,0,saveImg[3].width(),saveImg[3].height());
-    size=saveImg[4].size().scaled(320,90,Qt::KeepAspectRatio);
-    if(capt[4]) painter.drawPixmap(160-size.width()/2,185-size.height()/2,size.width(),size.height(),saveImg[4],0,0,saveImg[4].width(),saveImg[4].height());
-    if(capt[5]) painter.drawPixmap(490-size.width()/2,185-size.height()/2,size.width(),size.height(),saveImg[5],0,0,saveImg[5].width(),saveImg[5].height());
-    if(capt[6]) painter.drawPixmap(820-size.width()/2,185-size.height()/2,size.width(),size.height(),saveImg[6],0,0,saveImg[6].width(),saveImg[6].height());
-    if(capt[7]) painter.drawPixmap(160-size.width()/2,285-size.height()/2,size.width(),size.height(),saveImg[7],0,0,saveImg[7].width(),saveImg[7].height());
-    if(capt[8]) painter.drawPixmap(820-size.width()/2,285-size.height()/2,size.width(),size.height(),saveImg[8],0,0,saveImg[8].width(),saveImg[8].height());
-    if(capt[9]) painter.drawPixmap(160-size.width()/2,385-size.height()/2,size.width(),size.height(),saveImg[9],0,0,saveImg[9].width(),saveImg[9].height());
-    if(capt[10]) painter.drawPixmap(490-size.width()/2,385-size.height()/2,size.width(),size.height(),saveImg[10],0,0,saveImg[10].width(),saveImg[10].height());
-    if(capt[11]) painter.drawPixmap(820-size.width()/2,385-size.height()/2,size.width(),size.height(),saveImg[11],0,0,saveImg[11].width(),saveImg[11].height());
-    painter.end();
-    for(int i=0;i<12;i++){
-        if(!capt[i]) continue;
-        fileImg.setFileName(fileName[i]);
-        fileImg.open(QIODevice::WriteOnly);
-        saveImg[i].save(&fileImg,"PNG");
-        fileImg.close();
-    }
-    fileImg.setFileName("Result.png");
-    fileImg.open(QIODevice::WriteOnly);
-    resImg.save(&fileImg,"PNG");
-    fileImg.close();
+    saver->setParam(max,capt,saveImg);
+    saver->start();
     setFocus();
 }
 
@@ -538,4 +512,17 @@ void Viewer::resizeEvent(QResizeEvent *event)
 void Viewer::changeEvent(QEvent *event)
 {
     if(event->type()==QEvent::WindowStateChange) resized();
+}
+
+void Viewer::saveBar(int i1)
+{
+    ui->saveProgress->setValue(i1);
+    if(i1<max+1){
+        ui->saveLabel->setText("Saving "+QString::number(i1+1)+"/"+QString::number(max)+" Images");
+    }
+    else{
+        ui->saveLabel->setText("Save Complete");
+        ui->saveButton->setEnabled(1);
+        ui->saveProgress->setVisible(0);
+    }
 }

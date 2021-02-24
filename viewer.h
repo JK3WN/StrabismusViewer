@@ -17,6 +17,7 @@
 #include <QKeyEvent>
 #include <QTime>
 #include "videoframer.h"
+#include "saver.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -65,6 +66,7 @@ private slots:
     void on_straLeft_clicked();
     void on_saveButton_clicked();
     void resized();
+    void saveBar(int i1);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -82,11 +84,12 @@ private:
     QString *counter,now;
     QIntValidator *range;
     QTimer *timer;
-    int go=0,sh=90;
+    int go=0,sh=90, max=1;
     QTime cur,all;
     QPixmap defimg,eyeimg,saveImg[12];
     QImage img;
     VideoFramer *framer=new VideoFramer(this);
+    Saver *saver=new Saver();
     QFile fileImg;
     bool capt[12]={false};
     QPainter painter;

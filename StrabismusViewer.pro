@@ -12,10 +12,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
+    saver.cpp \
     videoframer.cpp \
     viewer.cpp
 
 HEADERS += \
+    saver.h \
     videoframer.h \
     viewer.h
 
