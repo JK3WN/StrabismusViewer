@@ -388,7 +388,7 @@ void Viewer::on_normRight_clicked()
 void Viewer::on_normLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
+    eyeimg=eyeimg.copy(eyeimg.width()/2,0,eyeimg.width()/2,eyeimg.height());
     saveImg[1]=eyeimg;
     eyeimg=eyeimg.scaled(ui->pNormLeft->width(),ui->pNormLeft->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pNormLeft->setPixmap(eyeimg);
@@ -411,7 +411,7 @@ void Viewer::on_straRight_clicked()
 void Viewer::on_straLeft_clicked()
 {
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.copy(eyeimg.width()/2+1,0,eyeimg.width()/2,eyeimg.height());
+    eyeimg=eyeimg.copy(eyeimg.width()/2,0,eyeimg.width()/2,eyeimg.height());
     saveImg[3]=eyeimg;
     eyeimg=eyeimg.scaled(ui->pAbnoLeft->width(),ui->pAbnoLeft->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     ui->pAbnoLeft->setPixmap(eyeimg);
