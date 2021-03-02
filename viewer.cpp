@@ -411,7 +411,6 @@ void Viewer::botRight_clicked()
 
 void Viewer::save()
 {
-    ui->saveButton->setEnabled(0);
     ui->saveLabel->setVisible(1);
     ui->saveProgress->setVisible(1);
     ui->saveProgress->setValue(0);
@@ -433,6 +432,7 @@ void Viewer::resized()
 {
     if(img.isNull()) eyeimg.load(":/image/default_full.png");
     else eyeimg=QPixmap::fromImage(img);
+    ui->vidLabel->setFixedSize(ui->navigationBar->width(),ui->navigationBar->width()*9/32);
     eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
     ui->vidLabel->setPixmap(eyeimg);
     sh=ui->vidLabel->height()/4<ui->vidLabel->width()*9/144?ui->vidLabel->height()/4:ui->vidLabel->width()*9/144;
@@ -512,7 +512,6 @@ void Viewer::saveBar(int i1)
     }
     else{
         ui->saveLabel->setText("Save Complete");
-        ui->saveButton->setEnabled(1);
         ui->saveProgress->setVisible(0);
     }
 }
