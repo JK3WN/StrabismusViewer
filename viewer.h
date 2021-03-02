@@ -64,7 +64,7 @@ private slots:
     void botLeft_clicked();
     void botMid_clicked();
     void botRight_clicked();
-    void on_saveButton_clicked();
+    void save();
     void resized();
     void saveBar(int i1);
 

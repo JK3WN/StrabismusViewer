@@ -28,6 +28,8 @@ Viewer::Viewer(QWidget *parent)
     ui->nFrameButton->setIcon(style()->standardIcon(QStyle::SP_MediaSeekForward));
     ui->pFrameButton->setIcon(style()->standardIcon(QStyle::SP_MediaSeekBackward));
     ui->actionSelect_Folder->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
+    ui->actionReset_All_Screenshots->setIcon(style()->standardIcon(QStyle::SP_DialogResetButton));
+    ui->actionSave_Screenshots->setIcon(style()->standardIcon(QStyle::SP_DialogSaveButton));
     ui->statusbar->addWidget(label);
     ui->statusbar->setSizeGripEnabled(0);
     label->setText(counter->append(QString::number(mList->mediaCount())));
@@ -40,7 +42,8 @@ Viewer::Viewer(QWidget *parent)
     connect(mPlayer,&QMediaPlayer::positionChanged,this,&Viewer::posChanged);
     connect(ui->filterBox,SIGNAL(returnPressed()),this,SLOT(on_toolButton_clicked()));
     connect(timer,SIGNAL(timeout()),this,SLOT(frontback()));
-    connect(ui->photoReset,SIGNAL(clicked()),this,SLOT(resetPhoto()));
+    connect(ui->actionReset_All_Screenshots,SIGNAL(triggered()),this,SLOT(resetPhoto()));
+    connect(ui->actionSave_Screenshots,SIGNAL(triggered()),this,SLOT(save()));
     connect(framer,SIGNAL(frameAvailable(QImage)),this,SLOT(processFrame(QImage)));
     connect(saver,&Saver::saving,this,&Viewer::saveBar);
 
@@ -223,8 +226,6 @@ void Viewer::disableControl()
     ui->frameBox->setValidator(range);
     ui->navigationBar->setRange(0,0);
     ui->allFrame->clear();
-    ui->photoReset->setEnabled(0);
-    ui->saveButton->setEnabled(0);
 }
 
 void Viewer::enableControl()
@@ -234,8 +235,6 @@ void Viewer::enableControl()
     ui->pFrameButton->setEnabled(1);
     ui->frameBox->setReadOnly(0);
     ui->navigationBar->setEnabled(1);
-    ui->photoReset->setEnabled(1);
-    ui->saveButton->setEnabled(1);
 }
 
 void Viewer::resetPhoto()
@@ -410,7 +409,7 @@ void Viewer::botRight_clicked()
     setFocus();
 }
 
-void Viewer::on_saveButton_clicked()
+void Viewer::save()
 {
     ui->saveButton->setEnabled(0);
     ui->saveLabel->setVisible(1);
