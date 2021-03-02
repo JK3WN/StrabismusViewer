@@ -63,7 +63,6 @@ Viewer::Viewer(QWidget *parent)
     ui->saveLabel->setVisible(0);
     ui->saveProgress->setVisible(0);
     ui->nineLayout->setAlignment(Qt::AlignCenter);
-    ui->fourLayout->setAlignment(Qt::AlignCenter);
     defimg.load(":/image/default_full.png");
     defimg=defimg.scaled(ui->vidLabel->width(),ui->vidLabel->height());
     ui->vidLabel->setPixmap(defimg);
