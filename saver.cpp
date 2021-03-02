@@ -2,12 +2,10 @@
 
 Saver::Saver()
 {
-
 }
 
 Saver::~Saver()
 {
-
 }
 
 void Saver::setParam(int max,bool capt[12],QPixmap saveImg[12])

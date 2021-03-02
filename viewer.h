@@ -18,6 +18,7 @@
 #include <QTime>
 #include "videoframer.h"
 #include "saver.h"
+#include "clickablelabel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -50,20 +51,19 @@ private slots:
     void disableControl();
     void enableControl();
     void resetPhoto();
-    void on_topLeft_clicked();
     void processFrame(QImage img);
-    void on_topMid_clicked();
-    void on_topRight_clicked();
-    void on_midLeft_clicked();
-    //void on_midMid_clicked();
-    void on_midRight_clicked();
-    void on_botLeft_clicked();
-    void on_botMid_clicked();
-    void on_botRight_clicked();
-    void on_normRight_clicked();
-    void on_normLeft_clicked();
-    void on_straRight_clicked();
-    void on_straLeft_clicked();
+    void normRight_clicked();
+    void normLeft_clicked();
+    void straRight_clicked();
+    void straLeft_clicked();
+    void topLeft_clicked();
+    void topMid_clicked();
+    void topRight_clicked();
+    void midLeft_clicked();
+    void midRight_clicked();
+    void botLeft_clicked();
+    void botMid_clicked();
+    void botRight_clicked();
     void on_saveButton_clicked();
     void resized();
     void saveBar(int i1);
