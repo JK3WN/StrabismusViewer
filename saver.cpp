@@ -28,31 +28,34 @@ void Saver::run()
         fileImg.close();
     }
     emit saving(max);
-    QPixmap resImg(980,430);
+    QPixmap resImg(3880,1960);
     painter.begin(&resImg);
-    painter.fillRect(0,0,980,430,QColor(255,255,255,255));
-    painter.drawText(120,0,320,20,Qt::AlignCenter,"Normal");
-    painter.drawText(540,0,320,20,Qt::AlignCenter,"Strabismus");
-    QSize size=saveImg[0].size().scaled(160,90,Qt::KeepAspectRatio);
+    painter.fillRect(0,0,3880,1960,QColor(255,255,255));
+    painter.setFont(QFont("Arial",60));
+    painter.drawText(1670,10,420,80,Qt::AlignCenter,"Normal");
+    painter.drawText(2320,10,420,80,Qt::AlignCenter,"Strabismus");
+    painter.drawText(1350,230,200,100,Qt::AlignCenter,"Right");
+    painter.drawText(1350,600,200,100,Qt::AlignCenter,"Left");
+    QSize size=saveImg[0].size().scaled(640,360,Qt::KeepAspectRatio);
     if(capt[0]){
-        painter.drawPixmap(280-size.width(),85-size.height()/2,size.width(),size.height(),saveImg[0],0,0,saveImg[0].width(),saveImg[0].height());
-        painter.drawPixmap(490-size.width(),285-size.height()/2,size.width(),size.height(),saveImg[0],0,0,saveImg[0].width(),saveImg[0].height());
+        painter.drawPixmap(1880-size.width()/2,280-size.height()/2,size.width(),size.height(),saveImg[0],0,0,saveImg[0].width(),saveImg[0].height());
+        painter.drawPixmap(1940-size.width(),1400-size.height()/2,size.width(),size.height(),saveImg[0],0,0,saveImg[0].width(),saveImg[0].height());
     }
     if(capt[1]){
-        painter.drawPixmap(280,85-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
-        painter.drawPixmap(490,285-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
+        painter.drawPixmap(1880-size.width()/2,650-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
+        painter.drawPixmap(2580-size.width(),1400-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
     }
-    if(capt[2]) painter.drawPixmap(700-size.width(),85-size.height()/2,size.width(),size.height(),saveImg[2],0,0,saveImg[2].width(),saveImg[2].height());
-    if(capt[3]) painter.drawPixmap(700,85-size.height()/2,size.width(),size.height(),saveImg[3],0,0,saveImg[3].width(),saveImg[3].height());
-    size=saveImg[4].size().scaled(320,90,Qt::KeepAspectRatio);
-    if(capt[4]) painter.drawPixmap(160-size.width()/2,185-size.height()/2,size.width(),size.height(),saveImg[4],0,0,saveImg[4].width(),saveImg[4].height());
-    if(capt[5]) painter.drawPixmap(490-size.width()/2,185-size.height()/2,size.width(),size.height(),saveImg[5],0,0,saveImg[5].width(),saveImg[5].height());
-    if(capt[6]) painter.drawPixmap(820-size.width()/2,185-size.height()/2,size.width(),size.height(),saveImg[6],0,0,saveImg[6].width(),saveImg[6].height());
-    if(capt[7]) painter.drawPixmap(160-size.width()/2,285-size.height()/2,size.width(),size.height(),saveImg[7],0,0,saveImg[7].width(),saveImg[7].height());
-    if(capt[8]) painter.drawPixmap(820-size.width()/2,285-size.height()/2,size.width(),size.height(),saveImg[8],0,0,saveImg[8].width(),saveImg[8].height());
-    if(capt[9]) painter.drawPixmap(160-size.width()/2,385-size.height()/2,size.width(),size.height(),saveImg[9],0,0,saveImg[9].width(),saveImg[9].height());
-    if(capt[10]) painter.drawPixmap(490-size.width()/2,385-size.height()/2,size.width(),size.height(),saveImg[10],0,0,saveImg[10].width(),saveImg[10].height());
-    if(capt[11]) painter.drawPixmap(820-size.width()/2,385-size.height()/2,size.width(),size.height(),saveImg[11],0,0,saveImg[11].width(),saveImg[11].height());
+    if(capt[2]) painter.drawPixmap(2530-size.width()/2,280-size.height()/2,size.width(),size.height(),saveImg[2],0,0,saveImg[2].width(),saveImg[2].height());
+    if(capt[3]) painter.drawPixmap(2530-size.width()/2,650-size.height()/2,size.width(),size.height(),saveImg[3],0,0,saveImg[3].width(),saveImg[3].height());
+    size=saveImg[4].size().scaled(1280,360,Qt::KeepAspectRatio);
+    if(capt[4]) painter.drawPixmap(650-size.width()/2,1030-size.height()/2,size.width(),size.height(),saveImg[4],0,0,saveImg[4].width(),saveImg[4].height());
+    if(capt[5]) painter.drawPixmap(1940-size.width()/2,1030-size.height()/2,size.width(),size.height(),saveImg[5],0,0,saveImg[5].width(),saveImg[5].height());
+    if(capt[6]) painter.drawPixmap(3230-size.width()/2,1030-size.height()/2,size.width(),size.height(),saveImg[6],0,0,saveImg[6].width(),saveImg[6].height());
+    if(capt[7]) painter.drawPixmap(650-size.width()/2,1400-size.height()/2,size.width(),size.height(),saveImg[7],0,0,saveImg[7].width(),saveImg[7].height());
+    if(capt[8]) painter.drawPixmap(3230-size.width()/2,1400-size.height()/2,size.width(),size.height(),saveImg[8],0,0,saveImg[8].width(),saveImg[8].height());
+    if(capt[9]) painter.drawPixmap(650-size.width()/2,1770-size.height()/2,size.width(),size.height(),saveImg[9],0,0,saveImg[9].width(),saveImg[9].height());
+    if(capt[10]) painter.drawPixmap(1940-size.width()/2,1770-size.height()/2,size.width(),size.height(),saveImg[10],0,0,saveImg[10].width(),saveImg[10].height());
+    if(capt[11]) painter.drawPixmap(3230-size.width()/2,1770-size.height()/2,size.width(),size.height(),saveImg[11],0,0,saveImg[11].width(),saveImg[11].height());
     painter.end();
     fileImg.setFileName("Result.png");
     fileImg.open(QIODevice::WriteOnly);

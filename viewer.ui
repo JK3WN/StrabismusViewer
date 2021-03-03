@@ -21,9 +21,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <property name="spacing">
-     <number>10</number>
-    </property>
     <item row="0" column="0" rowspan="2">
      <layout class="QGridLayout" name="listLayout">
       <property name="sizeConstraint">
@@ -610,7 +607,7 @@
        </spacer>
       </item>
       <item row="1" column="4">
-       <widget class="QLabel" name="normal_2">
+       <widget class="QLabel" name="abnormal">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>

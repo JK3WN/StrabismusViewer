@@ -489,6 +489,8 @@ void Viewer::resized()
     eyeimg=saveImg[11];
     eyeimg=eyeimg.scaled(ui->nine9->width(),ui->nine9->height(),Qt::KeepAspectRatio);
     ui->nine9->setPixmap(eyeimg);
+    ui->normal->setFixedWidth(ui->pNormRight->width());
+    ui->abnormal->setFixedWidth(ui->pNormLeft->width());
     setFocus();
 }
 
