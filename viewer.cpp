@@ -224,6 +224,7 @@ void Viewer::disableControl()
     range=new QIntValidator(0,0);
     ui->frameBox->setValidator(range);
     ui->navigationBar->setRange(0,0);
+    ui->actionSave_Screenshots->setEnabled(0);
     ui->allFrame->clear();
 }
 
@@ -234,6 +235,7 @@ void Viewer::enableControl()
     ui->pFrameButton->setEnabled(1);
     ui->frameBox->setReadOnly(0);
     ui->navigationBar->setEnabled(1);
+    ui->actionSave_Screenshots->setEnabled(1);
 }
 
 void Viewer::resetPhoto()
@@ -423,14 +425,14 @@ void Viewer::botRight_clicked()
 
 void Viewer::save()
 {
-    ui->saveLabel->setVisible(1);
-    ui->saveProgress->setVisible(1);
-    ui->saveProgress->setValue(0);
     max=1;
     for(int i=0;i<12;i++){
         if(capt[i]) max++;
     }
     if(max==1) return;
+    ui->saveLabel->setVisible(1);
+    ui->saveProgress->setVisible(1);
+    ui->saveProgress->setValue(0);
     ui->saveLabel->setText("Saving "+QString::number(1)+"/"+QString::number(max)+" Images");
     ui->saveProgress->setMaximum(max);
     dir->mkdir(now);
