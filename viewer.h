@@ -86,7 +86,7 @@ private:
     QTimer *timer;
     int go=0,sh=90, max=1;
     QTime cur,all;
-    QPixmap defimg,eyeimg,saveImg[12];
+    QPixmap defimg,eyeimg,saveImg[12],vidimg;
     QImage img;
     VideoFramer *framer=new VideoFramer(this);
     Saver *saver=new Saver();
@@ -94,5 +94,6 @@ private:
     bool capt[12]={false};
     QPainter painter;
     QStringList fileName={"NormalRight.png","NormalLeft.png","AbnormalRight.png","AbnormalLeft.png","TopLeft.png","TopMiddle.png","TopRight.png","MiddleLeft.png","MiddleRight.png","BottomLeft.png","BottomMiddle.png","BottomRight.png"};
+    QVideoProbe *probe=new QVideoProbe;
 };
 #endif // VIEWER_H

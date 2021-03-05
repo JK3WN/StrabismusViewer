@@ -111,7 +111,7 @@ void Viewer::chkFolder()
     content.clear();
     ui->listWidget->clear();
     dir=new QDir(QFileDialog::getExistingDirectory(this,"Select Folder"));
-    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.mov"<<"*.wmv",QDir::Files);
+    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.mov"<<"*.wmv<<*.mts",QDir::Files);
     for(const QString& v:vids){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
         QFileInfo fi(v);
@@ -132,7 +132,7 @@ void Viewer::on_toolButton_clicked()
     mList->clear();
     content.clear();
     ui->listWidget->clear();
-    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.wmv"<<"*.mov",QDir::Files);
+    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.wmv"<<"*.mov<<*.mts",QDir::Files);
     for(const QString& v:vids.filter(filter)){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
         QFileInfo fi(v);
@@ -281,8 +281,8 @@ void Viewer::processFrame(QImage img)
 {
     this->img=img;
     eyeimg=QPixmap::fromImage(img);
-    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
-    ui->vidLabel->setPixmap(eyeimg);
+    vidimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
+    ui->vidLabel->setPixmap(vidimg);
 }
 
 void Viewer::normRight_clicked()
@@ -446,9 +446,9 @@ void Viewer::resized()
 {
     if(img.isNull()) eyeimg.load(":/image/default_full.png");
     else eyeimg=QPixmap::fromImage(img);
-    ui->vidLabel->setFixedSize(ui->navigationBar->width(),ui->navigationBar->width()*9/32);
-    eyeimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
-    ui->vidLabel->setPixmap(eyeimg);
+    //ui->vidLabel->setFixedSize(ui->navigationBar->width(),ui->navigationBar->width()*9/32);
+    vidimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
+    ui->vidLabel->setPixmap(vidimg);
     sh=ui->vidLabel->height()/4<ui->vidLabel->width()*9/144?ui->vidLabel->height()/4:ui->vidLabel->width()*9/144;
     ui->pNormRight->setFixedSize(sh*16/9,sh);
     ui->pNormLeft->setFixedSize(sh*16/9,sh);

@@ -14,7 +14,8 @@ QList<QVideoFrame::PixelFormat> VideoFramer::supportedPixelFormats(QAbstractVide
 {
     Q_UNUSED(handleType);
     return QList<QVideoFrame::PixelFormat>()
-            <<QVideoFrame::Format_RGB32;
+            <<QVideoFrame::Format_RGB32
+            <<QVideoFrame::Format_RGB24;
 }
 
 bool VideoFramer::isFormatSupported(const QVideoSurfaceFormat &format) const
@@ -59,7 +60,7 @@ bool VideoFramer::present(const QVideoFrame &frame)
         const QImage image(cloneFrame.bits(),
                            cloneFrame.width(),
                            cloneFrame.height(),
-                           QVideoFrame::imageFormatFromPixelFormat(cloneFrame .pixelFormat()));
+                           QVideoFrame::imageFormatFromPixelFormat(cloneFrame.pixelFormat()));
         emit frameAvailable(image);
         cloneFrame.unmap();
     }
