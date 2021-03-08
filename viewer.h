@@ -97,9 +97,5 @@ private:
     bool capt[12]={false};
     QPainter painter;
     QStringList fileName={"NormalRight.png","NormalLeft.png","AbnormalRight.png","AbnormalLeft.png","TopLeft.png","TopMiddle.png","TopRight.png","MiddleLeft.png","MiddleRight.png","BottomLeft.png","BottomMiddle.png","BottomRight.png"};
-<<<<<<< Updated upstream
-    QProcess *process=new QProcess(this);
-=======
->>>>>>> Stashed changes
 };
 #endif // VIEWER_H

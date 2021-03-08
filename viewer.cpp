@@ -349,7 +349,7 @@ void Viewer::topLeft_clicked()
     setFocus();
 
     Mat frame;
-    VideoCapture cap;
+    //VideoCapture cap;
 }
 
 void Viewer::topMid_clicked()
