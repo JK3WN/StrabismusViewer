@@ -16,6 +16,9 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include <QTime>
+#include <opencv2/core.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/highgui.hpp>
 #include "videoframer.h"
 #include "saver.h"
 #include "clickablelabel.h"
@@ -94,6 +97,9 @@ private:
     bool capt[12]={false};
     QPainter painter;
     QStringList fileName={"NormalRight.png","NormalLeft.png","AbnormalRight.png","AbnormalLeft.png","TopLeft.png","TopMiddle.png","TopRight.png","MiddleLeft.png","MiddleRight.png","BottomLeft.png","BottomMiddle.png","BottomRight.png"};
+<<<<<<< Updated upstream
     QProcess *process=new QProcess(this);
+=======
+>>>>>>> Stashed changes
 };
 #endif // VIEWER_H
