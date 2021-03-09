@@ -33,15 +33,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
-
-INCLUDEPATH += C:/opencv/build/include
-
-debug: {
-        LIBS += -LC:/opencv/build/x64/vc15/lib \
-                -lopencv_world341d
-}
-
-release: {
-        LIBS += -LC:/opencv/build/x64/vc15/lib \
-                -lopencv_world341
-}

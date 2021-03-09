@@ -16,9 +16,6 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include <QTime>
-#include <opencv2/core.hpp>
-#include <opencv2/videoio.hpp>
-#include <opencv2/highgui.hpp>
 #include "videoframer.h"
 #include "saver.h"
 #include "clickablelabel.h"

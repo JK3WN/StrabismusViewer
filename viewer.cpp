@@ -2,9 +2,6 @@
 #include "ui_viewer.h"
 #include "videoframer.h"
 
-using namespace cv;
-using namespace std;
-
 Viewer::Viewer(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Viewer)
@@ -282,7 +279,7 @@ void Viewer::resetPhoto()
 
 void Viewer::processFrame(QImage img)
 {
-    this->img=img;
+    this->img=img.copy(0,0,img.width(),img.height());
     eyeimg=QPixmap::fromImage(img);
     vidimg=eyeimg.scaled(ui->vidLabel->width(),ui->vidLabel->height(),Qt::KeepAspectRatio);
     ui->vidLabel->setPixmap(vidimg);
@@ -347,9 +344,6 @@ void Viewer::topLeft_clicked()
     ui->nine1->setPixmap(eyeimg);
     capt[4]=true;
     setFocus();
-
-    Mat frame;
-    //VideoCapture cap;
 }
 
 void Viewer::topMid_clicked()
