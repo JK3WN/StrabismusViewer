@@ -16,7 +16,6 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include <QTime>
-#include "videoframer.h"
 #include "saver.h"
 #include "clickablelabel.h"
 
@@ -51,7 +50,7 @@ private slots:
     void disableControl();
     void enableControl();
     void resetPhoto();
-    void processFrame(QImage img);
+    void processFrame(QVideoFrame frame);
     void normRight_clicked();
     void normLeft_clicked();
     void straRight_clicked();
@@ -88,11 +87,12 @@ private:
     QTime cur,all;
     QPixmap defimg,eyeimg,saveImg[12],vidimg;
     QImage img;
-    VideoFramer *framer=new VideoFramer(this);
     Saver *saver=new Saver();
     QFile fileImg;
-    bool capt[12]={false};
+    bool capt[12]={false},capture=false;
     QPainter painter;
+    QVideoProbe *mProbe=new QVideoProbe;
+    QVideoFrame vidFrame;
     QStringList fileName={"NormalRight.png","NormalLeft.png","AbnormalRight.png","AbnormalLeft.png","TopLeft.png","TopMiddle.png","TopRight.png","MiddleLeft.png","MiddleRight.png","BottomLeft.png","BottomMiddle.png","BottomRight.png"};
 };
 #endif // VIEWER_H

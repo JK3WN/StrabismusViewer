@@ -14,13 +14,11 @@ SOURCES += \
     clickablelabel.cpp \
     main.cpp \
     saver.cpp \
-    videoframer.cpp \
     viewer.cpp
 
 HEADERS += \
     clickablelabel.h \
     saver.h \
-    videoframer.h \
     viewer.h
 
 FORMS += \
