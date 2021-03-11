@@ -43,7 +43,7 @@ void Saver::run()
     }
     if(capt[1]){
         painter.drawPixmap(1880-size.width()/2,650-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
-        painter.drawPixmap(2580-size.width(),1400-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
+        painter.drawPixmap(1940,1400-size.height()/2,size.width(),size.height(),saveImg[1],0,0,saveImg[1].width(),saveImg[1].height());
     }
     if(capt[2]) painter.drawPixmap(2530-size.width()/2,280-size.height()/2,size.width(),size.height(),saveImg[2],0,0,saveImg[2].width(),saveImg[2].height());
     if(capt[3]) painter.drawPixmap(2530-size.width()/2,650-size.height()/2,size.width(),size.height(),saveImg[3],0,0,saveImg[3].width(),saveImg[3].height());

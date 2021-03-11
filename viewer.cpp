@@ -108,7 +108,7 @@ void Viewer::chkFolder()
     content.clear();
     ui->listWidget->clear();
     dir=new QDir(QFileDialog::getExistingDirectory(this,"Select Folder"));
-    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.mov"<<"*.wmv<<*.mts",QDir::Files);
+    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.mov"<<"*.wmv"<<"*.mts",QDir::Files);
     for(const QString& v:vids){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
         QFileInfo fi(v);
@@ -129,7 +129,7 @@ void Viewer::on_toolButton_clicked()
     mList->clear();
     content.clear();
     ui->listWidget->clear();
-    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.wmv"<<"*.mov<<*.mts",QDir::Files);
+    vids=dir->entryList(QStringList()<<"*.mp4"<<"*.wmv"<<"*.mov"<<"*.mts",QDir::Files);
     for(const QString& v:vids.filter(filter)){
         content.push_back(QUrl::fromLocalFile(dir->path()+"/"+v));
         QFileInfo fi(v);
