@@ -451,22 +451,6 @@ void Viewer::save()
 
 void Viewer::resized()
 {
-    /*
-    sh=ui->nine1->width();
-    ui->pNormRight->setFixedSize(sh/2,sh*9/32);
-    ui->pNormLeft->setFixedSize(sh/2,sh*9/32);
-    ui->pAbnoRight->setFixedSize(sh/2,sh*9/32);
-    ui->pAbnoLeft->setFixedSize(sh/2,sh*9/32);
-    ui->nine5L->setFixedSize(sh/2,sh*9/32);
-    ui->nine5R->setFixedSize(sh/2,sh*9/32);
-    ui->nine2->setFixedSize(sh,sh*9/32);
-    ui->nine3->setFixedSize(sh,sh*9/32);
-    ui->nine4->setFixedSize(sh,sh*9/32);
-    ui->nine6->setFixedSize(sh,sh*9/32);
-    ui->nine7->setFixedSize(sh,sh*9/32);
-    ui->nine8->setFixedSize(sh,sh*9/32);
-    ui->nine9->setFixedSize(sh,sh*9/32);
-    */
     eyeimg=saveImg[0];
     eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio);
     ui->pNormRight->setPixmap(eyeimg);
