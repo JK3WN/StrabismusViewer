@@ -451,21 +451,22 @@ void Viewer::save()
 
 void Viewer::resized()
 {
-    sh=ui->vidWidget->height()/4<ui->vidWidget->width()*9/144?ui->vidWidget->height()/4:ui->vidWidget->width()*9/144;
-    ui->pNormRight->setFixedSize(sh*16/9,sh);
-    ui->pNormLeft->setFixedSize(sh*16/9,sh);
-    ui->pAbnoRight->setFixedSize(sh*16/9,sh);
-    ui->pAbnoLeft->setFixedSize(sh*16/9,sh);
-    ui->nine5R->setFixedSize(sh*16/9,sh);
-    ui->nine5L->setFixedSize(sh*16/9,sh);
-    ui->nine1->setFixedSize(sh*32/9,sh);
-    ui->nine2->setFixedSize(sh*32/9,sh);
-    ui->nine3->setFixedSize(sh*32/9,sh);
-    ui->nine4->setFixedSize(sh*32/9,sh);
-    ui->nine6->setFixedSize(sh*32/9,sh);
-    ui->nine7->setFixedSize(sh*32/9,sh);
-    ui->nine8->setFixedSize(sh*32/9,sh);
-    ui->nine9->setFixedSize(sh*32/9,sh);
+    /*
+    sh=ui->nine1->width();
+    ui->pNormRight->setFixedSize(sh/2,sh*9/32);
+    ui->pNormLeft->setFixedSize(sh/2,sh*9/32);
+    ui->pAbnoRight->setFixedSize(sh/2,sh*9/32);
+    ui->pAbnoLeft->setFixedSize(sh/2,sh*9/32);
+    ui->nine5L->setFixedSize(sh/2,sh*9/32);
+    ui->nine5R->setFixedSize(sh/2,sh*9/32);
+    ui->nine2->setFixedSize(sh,sh*9/32);
+    ui->nine3->setFixedSize(sh,sh*9/32);
+    ui->nine4->setFixedSize(sh,sh*9/32);
+    ui->nine6->setFixedSize(sh,sh*9/32);
+    ui->nine7->setFixedSize(sh,sh*9/32);
+    ui->nine8->setFixedSize(sh,sh*9/32);
+    ui->nine9->setFixedSize(sh,sh*9/32);
+    */
     eyeimg=saveImg[0];
     eyeimg=eyeimg.scaled(ui->pNormRight->width(),ui->pNormRight->height(),Qt::KeepAspectRatio);
     ui->pNormRight->setPixmap(eyeimg);
